@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import { Link } from "react-router-dom";
+import Writers from './pages/Writers';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-header">
+        <h1>Welcome to WritersBlock Management Page</h1>
+        <Link to="/Writers">Manage Writers</Link>
+        <Link to="/Readers">Manage Readers</Link>
+        <Link to="/WritersReaders">Manger WritersReaders</Link>
+        <Link to="/Posts">Manage Posts</Link>
+        <Link to="/Comments">Manage Comments</Link>
+      </div>
     </div>
   );
 }

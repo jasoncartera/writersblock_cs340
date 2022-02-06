@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { render } from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import App from "./App";
+import Writers from "./pages/Writers";
+import Readers from "./pages/Readers";
+import WritersReaders from "./pages/WritersReaders";
+import Posts from "./pages/Posts";
+import Comments from "./pages/Comments";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/writers" element={<Writers />} />
+      <Route path="/readers" element={<Readers />} />
+      <Route path="/writersreaders" element={<WritersReaders />} />
+      <Route path="/posts" element={<Posts />} />
+      <Route path="/comments" element={<Comments />} />
+
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
