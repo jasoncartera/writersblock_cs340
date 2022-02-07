@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 
 function Writers() {
   return (
-    <div className="Entity-header">
-      <h1>Manage Writers</h1>
-      <Link to="/">Home</Link>
+    <>
+      <div className="Entity-header">
+        <h1>Manage Writers</h1>
+        <Link to="/">Home</Link>
+      </div>
       <div className="Entity-page">
 
         <div className="right-panel">
@@ -55,7 +57,7 @@ function Writers() {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
