@@ -9,19 +9,21 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Release API
-      uses: akhileshns/heroku-deploy@v3.0.4
+      uses: jasoncartera/writersblock_cs340
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "writers-block-serve"
         heroku_email: ${{secrets.HEROKU_API_KEY}}
+        appdir: "server"
       env:
-        HD_APP_BASE: "serve"
+        HD_APP_BASE: "server"
     - name: Release Web Client
-      uses: akhileshns/heroku-deploy@v3.0.4
+      uses: jasoncartera/writersblock_cs340
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "writers-block-ui"
         heroku_email: ${{secrets.HEROKU_API_KEY}}
+        appdir: "ui"
       env:
         HD_APP_BASE: "us"
         HD_REACT_APP_API_URL: "https://writers-block-serve.herokuapp.com"
