@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <div className="App-header">
         <h1>Welcome to WritersBlock Management Page</h1>
-        <Link to="/Writers">Manage Wr</Link>
+        <Link to="/Writers">Manage Writers</Link>
         <Link to="/Readers">Manage Readers</Link>
         <Link to="/WritersReaders">Manage WritersReaders</Link>
         <Link to="/Posts">Manage Posts</Link>
