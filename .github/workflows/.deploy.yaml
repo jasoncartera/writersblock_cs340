@@ -1,0 +1,27 @@
+
+name: Push stack to heroku
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Release API
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "writers-block-serve"
+        heroku_email: ${{secrets.HEROKU_API_KEY}}
+      env:
+        HD_APP_BASE: "serve"
+    - name: Release Web Client
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "writers-block-ui"
+        heroku_email: ${{secrets.HEROKU_API_KEY}}
+      env:
+        HD_APP_BASE: "us"
+        HD_REACT_APP_API_URL: "https://writers-block-serve.herokuapp.com"
