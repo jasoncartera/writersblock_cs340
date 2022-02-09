@@ -17,7 +17,7 @@ function Comments() {
                                 <th>Id</th>
                                 <th>ReaderId</th>
                                 <th>PostId</th>
-                                <th>Conent</th>
+                                <th>Content</th>
                                 <th>Posted</th>
                             </tr>
                         </thead>

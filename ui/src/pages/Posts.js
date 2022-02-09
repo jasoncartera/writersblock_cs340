@@ -15,7 +15,7 @@ function Posts() {
                             <tr className="Entity-page-row">
                                 <th>Id</th>
                                 <th>WriterId</th>
-                                <th>Conent</th>
+                                <th>Content</th>
                                 <th>Photo</th>
                                 <th>Posted</th>
                             </tr>
