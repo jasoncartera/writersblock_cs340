@@ -3,10 +3,10 @@
 import { createConnection } from 'mysql';
 
 const db = createConnection({
-  host     : 'localhost',
-  user     : 'me',
-  password : 'secret',
-  database : 'my_db'
+  host     : 'us-cdbr-east-05.cleardb.net',
+  user     : 'bccf571e5c0bd9',
+  password : 'a27a1eaf',
+  database : 'heroku_cb287988b838f11'
 });
 
 /* 
@@ -26,6 +26,7 @@ db.connect(function(error) {
   /* Display connection id. */
   console.log('db id: ' + connection.threadId);
 
+  //TODO: Possibly need to create table on heroku?
   /* Creating the Writers table. */
   const writersTableCreate = `create table if not exists Writers(
     Id: INT auto_increment NOT NULL primary key,
