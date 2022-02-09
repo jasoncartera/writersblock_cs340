@@ -2,12 +2,7 @@
 
 import { createConnection } from 'mysql';
 
-const db = createConnection({
-  host     : 'us-cdbr-east-05.cleardb.net',
-  user     : 'bccf571e5c0bd9',
-  password : 'a27a1eaf',
-  database : 'heroku_cb287988b838f11'
-});
+const db = createConnection(process.env.CLEARDB_DATABASE_URL);
 
 /* 
 Citation for the following connect function's use of create table:
