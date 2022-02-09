@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
+      steps:
       - uses: actions/checkout@v2
       - name: Deploy API
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -25,7 +25,7 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "writers-block-serve" #Must be unique in Heroku
+          heroku_app_name: "writers-block-ui" #Must be unique in Heroku
           heroku_email: "carterja@oregonstate.edu"
         appdir: "ui"
       env:
