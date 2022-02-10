@@ -1,6 +1,7 @@
 'use strict';
 
 import { createConnection } from 'mysql';
+import 'dotenv/config'
 
 const db = createConnection(process.env.CLEARDB_DATABASE_URL);
 
@@ -19,9 +20,9 @@ db.connect(function(error) {
   }
 
   /* Display connection id. */
-  console.log('db id: ' + connection.threadId);
+  console.log('db id: ' + db.threadId);
 
-  //TODO: Possibly need to create table on heroku?
+  //TODO: Possibly need to create table on heroku? 
   /* Creating the Writers table. */
   const writersTableCreate = `create table if not exists Writers(
     Id: INT auto_increment NOT NULL primary key,
