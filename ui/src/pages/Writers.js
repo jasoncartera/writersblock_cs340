@@ -50,7 +50,7 @@ function Writers() {
             <label for="upload-photo">Upload photo:</label>
             <input type="file" name="writer-upload-photo" id="writer-upload-photo"></input>
 
-            <label for="writer-date-joined">Username:</label>
+            <label for="writer-date-joined">Date Joined:</label>
             <input type="date" name="writer-date-joined" id="writer-date-joined"></input>
 
             <input type="submit"></input>

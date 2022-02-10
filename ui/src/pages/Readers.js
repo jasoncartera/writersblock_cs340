@@ -44,7 +44,7 @@ function Readers() {
                         <label for="upload-photo">Upload photo:</label>
                         <input type="file" name="reader-upload-photo" id="reader-upload-photo"></input>
 
-                        <label for="reader-date-joined">Username:</label>
+                        <label for="reader-date-joined">Date Joined:</label>
                         <input type="date" name="reader-date-joined" id="reader-date-joined"></input>
 
                         <input type="submit"></input>

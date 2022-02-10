@@ -76,9 +76,14 @@ a {
 .left-panel {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-
 }
+
+.left-panel p {
+  font-size: .75em;
+}
+
 .Entity-page-table {
   border-collapse: collapse;
   text-align: center;
