@@ -16,10 +16,7 @@ render(
       <Route path="/writersreaders" element={<WritersReaders />} />
       <Route path="/posts" element={<Posts />} />
       <Route path="/comments" element={<Comments />} />
-
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
 );
-
-
