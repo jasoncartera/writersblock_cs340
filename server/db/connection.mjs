@@ -23,9 +23,26 @@ db.getConnection(function (error, connection) {
 });
 
 /* Citation: Student from CS340 in Discord channel */
-const dbQuery = (query) =>
-    new Promise((resolve, reject) =>
-    db.query(query, (error, data) => error ? reject(error): resolve(data)));
+const dbQuery = (query, values) => {
+  if (values === undefined) {
+    return new Promise((resolve, reject) => {
+      db.query(query, (error, data) => {
+        if (error) {
+          return reject(error)
+        }
+        return resolve(data);
+      });
+    });
+  }
+  return new Promise((resolve, reject) => {
+    db.query(query, values, (error, data) => {
+      if (error) {
+        return reject(error)
+      }
+      return resolve(data);
+    });
+  });
+};
 
 /* Creating the Writers table. */
 // Wrtiers table created in MySQL Workbench
