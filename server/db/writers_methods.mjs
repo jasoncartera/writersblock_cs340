@@ -43,8 +43,9 @@ const deleteWriter = async (_id) => {
     return result;
 }
 
-/* Routes */
-/* Adapted from 'Example of Writing GET route using async/await promises:
+/* Writers Routes
+
+Adapted from 'Example of Writing GET route using async/await promises:
 https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-await-promises-in-node-js-9e6c81b683da  */
 
 /* Get all writers */
