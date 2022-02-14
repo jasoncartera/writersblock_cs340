@@ -77,7 +77,7 @@ router.get('/comments', async (req, res) => {
         res.status(200).json(data);
       } catch (err) {
         console.log(err);
-        res.status(500);
+        res.status(500).json({Error: err.message});
       }
 });
 
@@ -92,7 +92,7 @@ router.get('/comments/:username', async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -107,7 +107,7 @@ router.get('/comments/byPost/:postId', async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -119,7 +119,7 @@ router.post('/comments', async (req, res) => {
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -128,11 +128,10 @@ router.put('/comments/:_id', async (req, res) => {
     try {
         const values = [req.body.readerId, req.body.postId, req.body.content, req.body.posted];
         const result = await updateComment(req.params._id, values);
-        console.log(result);
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -147,7 +146,7 @@ router.delete('/comments/:_id', async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 

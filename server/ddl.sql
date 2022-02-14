@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `WritersReaders` (
     `ReaderId` INT(11) NOT NULL,
     `WriterId` INT(11) NOT NULL,
     PRIMARY KEY (`Id`),
+    CONSTRAINT `unique_relationship` UNIQUE (`ReaderId`, `WriterId`),
     FOREIGN KEY (`ReaderId`) REFERENCES `Readers` (`Id`) ON DELETE CASCADE,
     FOREIGN KEY (`WriterId`) REFERENCES `Writers` (`Id`) ON DELETE CASCADE
 );

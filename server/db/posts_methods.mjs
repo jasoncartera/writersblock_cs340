@@ -66,7 +66,7 @@ router.get('/posts', async (req, res) => {
         res.status(200).json(data);
       } catch (err) {
         console.log(err);
-        res.status(500);
+        res.status(500).json({Error: err.message});
       }
 });
 
@@ -81,7 +81,7 @@ router.get('/posts/:username', async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -93,7 +93,7 @@ router.post('/posts', async (req, res) => {
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -106,7 +106,7 @@ router.put('/posts/:_id', async (req, res) => {
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
@@ -121,7 +121,7 @@ router.delete('/posts/:_id', async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.send(500).json({Error: err.message});
+        res.status(500).json({Error: err.message});
     }
 });
 
