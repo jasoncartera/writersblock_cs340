@@ -1,6 +1,14 @@
 import React from 'react';
 
-function InsertComment({ setComments /*, readers*/ }) {
+
+/* 
+Citation for the following return's use of select dropdown in React:
+Date: 2/12/2022
+Adapted from: Populate Drop Down Options in React
+Source URL: https://dev.to/antdp425/populate-dropdown-options-in-react-1nk0
+*/
+
+function InsertComment({ setComments, readers }) {
 
     
     return (
@@ -12,6 +20,7 @@ function InsertComment({ setComments /*, readers*/ }) {
                 <label for="comment-readerid">ReaderId</label>
                 <select type="number" name="comment-readerid" id="comment-readerid">
                     <option value="" selected>Select a Writer</option>
+                    {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
                 </select>
 
                 <label for="comment-postid">PostId</label>
@@ -30,12 +39,3 @@ function InsertComment({ setComments /*, readers*/ }) {
 }
 
 export default InsertComment;
-
-// For drop down - need to find correct way to lift state for readers
-// {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
-/* 
-Citation for the following return's use of select dropdown in React:
-Date: 2/12/2022
-Adapted from: Populate Drop Down Options in React
-Source URL: https://dev.to/antdp425/populate-dropdown-options-in-react-1nk0
-*/

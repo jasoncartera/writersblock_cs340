@@ -1,17 +1,17 @@
 import React from 'react';
 import CommentList from '../components/comments/CommentList';
-import Navigation from "../components/Navigation";
 import InsertComment from '../components/comments/InsertComment';
 import { useState } from 'react';
+import { useOutletContext } from "react-router-dom";
 
-function Comments({readers}) {
+function Comments() {
 
-    // Set state
+    // Get, Set state
+    const [readers] = useOutletContext();
     const [comments, setComments] = useState([]);
 
     return (
         <>
-            <Navigation />
             
             <div className="Entity-header">
                 <h1>Manage Comments</h1>

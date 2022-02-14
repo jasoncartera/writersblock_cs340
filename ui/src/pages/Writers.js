@@ -1,17 +1,14 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 import InsertWriter from "../components/writers/InsertWriter";
 import WriterList from "../components/writers/WriterList";
-import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 function Writers() {
 
-    // Set state
-    const [writers, setWriters] = useState([]);
+    const [writers, setWriters] = useOutletContext();
 
     return (
     <>
-        <Navigation />
         <div className="Entity-header">
             <h1>Manage Writers</h1>
         </div>

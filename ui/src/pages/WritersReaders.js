@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigation from "../components/Navigation";
 import InsertWriterReader from '../components/writersReaders/InsertWriterReader';
 import WriterReaderList from '../components/writersReaders/WriterReaderList';
 import { useState } from 'react';
@@ -12,7 +11,6 @@ function WritersReaders() {
 
     return (
         <>
-            <Navigation />
             <div className="Entity-header">
                 <h1>Manage WritersReaders</h1>
             </div>

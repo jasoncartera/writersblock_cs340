@@ -1,18 +1,15 @@
 import React from 'react';
-import Navigation from "../components/Navigation";
 import InsertReader from '../components/readers/InsertReader';
 import ReaderList from '../components/readers/ReaderList';
-import { useState } from 'react';
+import { useOutletContext } from "react-router-dom";
 
 
 function Readers() {
-    
-    // Set state
-    const [readers, setReaders] = useState([]);
+
+    const [readers, setReaders] = useOutletContext();
 
     return (
         <>
-            <Navigation />
             <div className="Entity-header">
                 <h1>Manage Readers</h1>
             </div>

@@ -1,17 +1,18 @@
 import React from 'react';
-import Navigation from "../components/Navigation";
 import InsertPost from '../components/posts/InsertPost';
 import PostList from '../components/posts/PostList';
 import { useState } from 'react';
+import { useOutletContext } from "react-router-dom";
 
-function Posts({writers}) {
+function Posts() {
+
+    const [writers] = useOutletContext();
     
     // Set state
     const [posts, setPosts] = useState([]);
 
     return (
         <>
-            <Navigation />
             <div className="Entity-header">
                 <h1>Manage Posts</h1>
             </div>
