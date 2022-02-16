@@ -1,12 +1,12 @@
 import React from 'react';
 
-function InsertReader({ setReaders }) {
+function UpdateReader({ setReaders, reader }) {
 
     
     return (
-        <form className="insert-form" id="add-reader-form">
+        <form className="update-form" id="update-reader-form">
             
-            <p>Insert New Reader</p>            
+            <p>Update Reader</p>            
             <div>
                 <input type="text" name="reader-input-username" id="reader-input-username" placeholder='Username'></input>
             </div>
@@ -29,10 +29,10 @@ function InsertReader({ setReaders }) {
                 <input type="date" name="reader-date-joined" id="reader-date-joined"></input>
             </div>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit">UPDATE</button>
                     
         </form>
     );
 }
 
-export default InsertReader;
+export default UpdateReader;

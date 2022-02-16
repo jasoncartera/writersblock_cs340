@@ -1,34 +1,36 @@
 import React from 'react';
 import Post from './Post';
 
-function PostList({ posts }) {
-    return (
 
-        <table id="posts" className="Entity-page-table">
-            <thead>
-                <tr className="Entity-page-row">
-                    <th>Id</th>
-                    <th>WriterId</th>
-                    <th>Content</th>
-                    <th>Photo</th>
-                    <th>Posted</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="Entity-page-row">
-                    <td>1</td>
-                    <td>1</td>
-                    <td>Placeholder</td>
-                    <td>/path</td>
-                    <td>2022-02-05</td>
-                    <td><button>Update</button></td>
-                    <td><button>Delete</button></td>
-                </tr>
-                {posts.map((post, i) => <Post post={post} key={i} />)}
-            </tbody>
-        </table>
+/* 
+Citation for the following function:
+Date: 2/15/2022
+How table is broken up into components is Adapted from: 
+    movies_ui.zip (particularly MovieList.js and Movie.js) from CS 290 F'21, Module 9, Exploration — Implementing a Full-Stack MERN App - Part 1
+Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
+*/
+function PostList({ posts }) {
+
+    return (
+        <>
+            <p>Current Posts</p>
+            <table id="posts" className="list-table">
+                <thead>
+                    <tr className="list-row">
+                        <th>Id</th>
+                        <th>WriterId</th>
+                        <th>Content</th>
+                        <th>Photo</th>
+                        <th>Posted</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {posts.map((post, i) => <Post post={post} key={i} />)}
+                </tbody>
+            </table>
+        </>
     );
 }
 

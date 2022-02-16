@@ -1,19 +1,12 @@
 import React from 'react';
 
 
-/* 
-Citation for the following return's use of select dropdown in React:
-Date: 2/12/2022
-Adapted from: Populate Drop Down Options in React
-Source URL: https://dev.to/antdp425/populate-dropdown-options-in-react-1nk0
-*/
-
-function InsertComment({ setComments, readers }) {
+function UpdateComment({ setComments, readers }) {
 
     
     return (
         <form className="insert-form" id="add-comment-form">
-            <p>Insert New Comment</p>
+            <p>Update Comment</p>
             
             <div>
                 <label for="comment-readerid">ReaderId</label>
@@ -38,9 +31,9 @@ function InsertComment({ setComments, readers }) {
                 <input type="date" name="comment-date" id="comment-date"></input>
             </div>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit">UPDATE</button>
         </form>
     );
 }
 
-export default InsertComment;
+export default UpdateComment;

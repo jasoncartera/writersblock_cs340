@@ -3,6 +3,7 @@ import InsertPost from '../components/posts/InsertPost';
 import PostList from '../components/posts/PostList';
 import { useState } from 'react';
 import { useOutletContext } from "react-router-dom";
+import UpdatePost from '../components/posts/UpdatePost';
 
 function Posts() {
 
@@ -13,16 +14,22 @@ function Posts() {
 
     return (
         <>
-            <div className="Entity-header">
+            <div className="title">
                 <h1>Manage Posts</h1>
             </div>
-            <div className="Entity-page">
+            <div className="page-body">
                 <div className="list">
                     <PostList posts={posts}/>
                 </div>
-                <div className="insert">
-                    <InsertPost setPosts={setPosts} writers={writers}/>
+                <div className='insert-update'>
+                    <div className="insert">
+                        <InsertPost setPosts={setPosts} writers={writers}/>
+                    </div>
+                    <div className="update">
+                        <UpdatePost setPosts={setPosts} writers={writers}/>
+                    </div>
                 </div>
+                
             </div>
         </>
     );

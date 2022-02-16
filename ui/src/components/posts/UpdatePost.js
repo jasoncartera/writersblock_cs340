@@ -8,13 +8,13 @@ Adapted from: Populate Drop Down Options in React
 Source URL: https://dev.to/antdp425/populate-dropdown-options-in-react-1nk0
 */
 
-function InsertPost({ setPosts, writers }) {
+function UpdatePost({ setPosts, writers }) {
 
     
     return (
-        <form className="insert-form" id="add-post-form">
+        <form className="update-form" id="update-post-form">
             
-            <p>Insert New Post</p>
+            <p>Update Post</p>
             <div>
                  <label for="post-input-writerid">WriterId</label>
                 <select type="number" name="post-input-writerid" id="post-input-writerid">
@@ -24,7 +24,7 @@ function InsertPost({ setPosts, writers }) {
             </div>
                     
             <div>
-                <label for="post-cotnent">Content:</label>
+                <label for="post-content">Content:</label>
                 <textarea name="post-content" id="post-content" rows="8" cols="50"></textarea>
             </div>
 
@@ -38,10 +38,10 @@ function InsertPost({ setPosts, writers }) {
                 <input type="date" name="post-date" id="post-date"></input>
             </div>       
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit">UPDATE</button>
 
         </form>
     );
 }
 
-export default InsertPost;
+export default UpdatePost;

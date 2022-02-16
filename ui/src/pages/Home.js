@@ -1,5 +1,6 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState } from 'react';
+import Navigation from "../components/Navigation";
 
 function Home(){
 
@@ -8,20 +9,22 @@ function Home(){
     const [readers, setReaders] = useState([]);
 
     return (
-        <>
-            <Link to=".">Home</Link>
-            <Link to="Writers">Manage Writers</Link>
-            <Link to="Readers">Manage Readers</Link>
-            <Link to="WritersReaders">Manage WritersReaders</Link>
-            <Link to="Posts">Manage Posts</Link>
-            <Link to="Comments">Manage Comments</Link>
+        <>   
+            <Navigation />   
 
-            <div className="Entity-header">
+            <div className="title">
                 <h1>WritersBlock Management Site</h1>
             </div>
+
             <Outlet context={[writers, setWriters, readers, setReaders]} />
         </>
     );
 }
 
 export default Home;
+
+/*
+                <div className="title">
+                <h1>WritersBlock Management Site</h1>
+            </div>
+*/

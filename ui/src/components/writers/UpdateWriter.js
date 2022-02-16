@@ -1,12 +1,12 @@
 import React from 'react';
 
-function InsertWriter({ setWriters }) {
+function UpdateWriter({ setWriters }) {
 
     
     return (
-        <form className="insert-form" id="add-writer-form">
+        <form className="update-form" id="update-writer-form">
             
-            <p>Insert New Writer</p>
+            <p>Update Writer</p>
             
             <div>
                 <input type="text" name="writer-input-username" id="writer-input-username" placeholder='Username'></input>
@@ -30,10 +30,10 @@ function InsertWriter({ setWriters }) {
                 <input type="date" name="writer-date-joined" id="writer-date-joined"></input>
             </div>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit">UPDATE</button>
 
         </form>
     );
 }
 
-export default InsertWriter;
+export default UpdateWriter;

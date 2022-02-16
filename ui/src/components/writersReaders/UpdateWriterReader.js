@@ -1,12 +1,12 @@
 import React from 'react';
 
-function InsertWriterReader({ setWritersReaders }) {
+function UpdateWriterReader({ setWritersReaders, writerReader }) {
 
     
     return (
-        <form className="insert-form" id="add-writer-reader-form">
+        <form className="update-form" id="update-writer-reader-form">
 
-            <p>Insert New WriterReader</p>
+            <p>Update Writer</p>
             
             <div>
                 <label for="readerid">ReaderId:</label>
@@ -18,36 +18,36 @@ function InsertWriterReader({ setWritersReaders }) {
                 <input type="number" name="writerid" id="writerid"></input>
             </div>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit">UPDATE</button>
                     
         </form>
     );
 }
 
-export default InsertWriterReader;
+export default UpdateWriterReader;
 
 /*
-      <form className="insert-form" id="add-writer-reader-form">
+        <form className="update-form" id="update-writer-reader-form">
 
-            <p>Insert New WriterReader</p>
+            <p>Update WriterReader</p>
             
             <div>
-                <label for="insert-readerid">ReaderId</label>
-                <select type="number" name="insert-readerid" id="insert-readerid">
+                <label for="update-readerid">ReaderId</label>
+                <select type="number" name="update-readerid" id="update-readerid">
                     <option value="" selected>Select a Reader</option>
                     {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
                 </select>
             </div>
             
             <div>
-                <label for="insert-writerid">WriterId</label>
-                <select type="number" name="insert-writerid" id="insert-writerid">
+                <label for="update-writerid">WriterId</label>
+                <select type="number" name="update-writerid" id="update-writerid">
                     <option value="" selected>Select a Writer</option>
                     {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
                 </select>
             </div>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit">UPDATE</button>
                     
         </form>
  */
