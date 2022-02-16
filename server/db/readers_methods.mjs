@@ -4,56 +4,57 @@ import { dbQuery, db } from './connection.mjs'
 import express from 'express';
 const router = express.Router();
 
+
 /* 
-    Writers table methods.
+    Readers table methods.
 */
 
-/* Create a new writer. */
-const createWriter = async (values) => {
-    const createWriterQuery = `INSERT INTO Writers (Username, Email, Photo, DateJoined) VALUES (?, ?, ?, ?)`
-    const result = await dbQuery(createWriterQuery, values);
+/* Create a new reader */
+const createReader = async (values) => {
+    const createReaderQuery = `INSERT INTO Readers (Username, Email, Photo, DateJoined) VALUES (?, ?, ?, ?)`
+    const result = await dbQuery(createReaderQuery, values);
     return result;
 };
 
-/* Retrieve a writer
+/* Retrieve a reader
 NOTE: NEED TO DECIDE ON PARAM TO SEARCH BY*/
-const selectOneWriter = async (username) => {
-    const selectOneWriterQuery = `SELECT * FROM Writers WHERE Username=`+db.escape(username);
-    const result = await dbQuery(selectOneWriterQuery);
+const selectOneReader = async (username) => {
+    const selectOneReaderQuery = `SELECT * FROM Readers WHERE Username=`+db.escape(username);
+    const result = await dbQuery(selectOneReaderQuery);
     return result;
 };
 
-/* Retrieve all writers */
-const selectAllWriters = async () => {
-    const selectAllWritersQuery = `SELECT * FROM Writers`;
-    const result = await dbQuery(selectAllWritersQuery);
+/* Retrieve all readers */
+const selectAllReaders = async () => {
+    const selectAllReadersQuery = `SELECT * FROM Readers`;
+    const result = await dbQuery(selectAllReadersQuery);
     return result;
 };
 
-/* Update a writer. 
+/* Update a reader 
 NOTE: NEED TO SEND ALL VALUES TO SERVER FROM UI EVEN IF ONLY UPDATING ONE */
-const updateWriter = async (_id, values) => {
-    const updateWriterQuery = `UPDATE Writers SET Username=?, Email=?, Photo=?, DateJoined=? WHERE Id=` +db.escape(_id);
-    const result = await dbQuery(updateWriterQuery, values);
+const updateReader = async (_id, values) => {
+    const updateReaderQuery = `UPDATE Readers SET Username=?, Email=?, Photo=?, DateJoined=? WHERE Id=` +db.escape(_id);
+    const result = await dbQuery(updateReaderQuery, values);
     return result;
 };
 
-/* Delete a writer by Id*/
-const deleteWriter = async (_id) => {
-    const deleteWriterQuery = `DELETE FROM Writers WHERE id=`+db.escape(_id);
-    const result = await dbQuery(deleteWriterQuery);
+/* Delete a reader by Id*/
+const deleteReader = async (_id) => {
+    const deleteReaderQuery = `DELETE FROM Readers WHERE id=`+db.escape(_id);
+    const result = await dbQuery(deleteReaderQuery);
     return result;
 };
 
-/* Writers Routes
+/* Readers Routes
 
 Adapted from 'Example of Writing GET route using async/await promises:
 https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-await-promises-in-node-js-9e6c81b683da  */
 
-/* Get all writers */
-router.get('/writers', async (req, res) => {
+/* Get all readers */
+router.get('/readers', async (req, res) => {
     try {
-        const data = await selectAllWriters();
+        const data = await selectAllReaders();
         // Send json response
         res.status(200).json(data);
       } catch (err) {
@@ -62,10 +63,10 @@ router.get('/writers', async (req, res) => {
       }
 });
 
-/* Get a writer by username */
-router.get('/writers/:username', async (req, res) => {
+/* Get a reader by username */
+router.get('/readers/:username', async (req, res) => {
     try {
-        const result = await selectOneWriter(req.params.username);
+        const result = await selectOneReader(req.params.username);
         if (result.length == 0) {
             res.status(404).json({Error: "User not found"});
         } else {
@@ -77,11 +78,11 @@ router.get('/writers/:username', async (req, res) => {
     }
 });
 
-/* Create Writer */
-router.post('/writers', async (req, res) => {
+/* Create reader */
+router.post('/readers', async (req, res) => {
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
-        const result = await createWriter(values);
+        const result = await createReader(values);
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
@@ -89,11 +90,11 @@ router.post('/writers', async (req, res) => {
     }
 });
 
-/* Update Writer */
-router.put('/writers/:_id', async (req, res) => {
+/* Update reader by id */
+router.put('/readers/:_id', async (req, res) => {
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
-        const result = await updateWriter(req.params._id, values);
+        const result = await updateReader(req.params._id, values);
         console.log(result);
         res.status(200).json(result);
     } catch (err) {
@@ -102,10 +103,10 @@ router.put('/writers/:_id', async (req, res) => {
     }
 });
 
-/* Delete a writer */
-router.delete('/writers/:_id', async (req, res) => {
+/* Delete a reader by id */
+router.delete('/readers/:_id', async (req, res) => {
     try {
-        const result = await deleteWriter(req.params._id);
+        const result = await deleteReader(req.params._id);
         if (result.affectedRows == 0) {
             res.status(404).json({Error: "User not found"});
         } else {
