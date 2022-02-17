@@ -1,16 +1,15 @@
 import React from 'react';
 import InsertPost from '../components/posts/InsertPost';
 import PostList from '../components/posts/PostList';
-import { useState } from 'react';
 import { useOutletContext } from "react-router-dom";
 import UpdatePost from '../components/posts/UpdatePost';
+import PostSearch from '../components/posts/PostSearch';
 
 function Posts() {
 
     const [writers] = useOutletContext();
-    
-    // Set state
-    const [posts, setPosts] = useState([]);
+    const [posts] = useOutletContext();
+    const [setPosts] = useOutletContext();
 
     return (
         <>
@@ -21,7 +20,11 @@ function Posts() {
                 <div className="list">
                     <PostList posts={posts}/>
                 </div>
-                <div className='insert-update'>
+
+                <div className='dbms-components'>
+                    <div className='search'>
+                        <PostSearch setPosts={setPosts} writers={writers}/>
+                    </div>
                     <div className="insert">
                         <InsertPost setPosts={setPosts} writers={writers}/>
                     </div>
@@ -29,7 +32,6 @@ function Posts() {
                         <UpdatePost setPosts={setPosts} writers={writers}/>
                     </div>
                 </div>
-                
             </div>
         </>
     );

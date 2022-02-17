@@ -4,13 +4,15 @@ import WriterReaderList from '../components/writersReaders/WriterReaderList';
 import { useState } from 'react';
 import UpdateWriterReader from '../components/writersReaders/UpdateWriterReader';
 import { useOutletContext } from "react-router-dom";
+import WritersReadersSearch from '../components/writersReaders/WritersReadersSearch';
 
 
 function WritersReaders() {
 
     // Set state
     const [writersReaders, setWritersReaders] = useState([]);
-    const [readers, writers] = useOutletContext();
+    const [readers] = useOutletContext();
+    const [writers] = useOutletContext();
 
     return (
         <>
@@ -21,7 +23,10 @@ function WritersReaders() {
                 <div className="list">
                     <WriterReaderList writersReaders={writersReaders}/>
                 </div>
-                <div className='insert-update'>
+                <div className='dbms-components'>
+                    <div className="insert">
+                        <WritersReadersSearch setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
+                    </div>
                     <div className="insert">
                         <InsertWriterReader setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
                     </div>

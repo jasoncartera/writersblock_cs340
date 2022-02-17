@@ -3,6 +3,7 @@ import InsertWriter from "../components/writers/InsertWriter";
 import WriterList from "../components/writers/WriterList";
 import { useOutletContext } from "react-router-dom";
 import UpdateWriter from "../components/writers/UpdateWriter";
+import WriterSearch from "../components/writers/WriterSearch";
 
 function Writers() {
 
@@ -17,7 +18,10 @@ function Writers() {
             <div className="list">
                 <WriterList writers={writers} />
             </div>
-            <div className="insert-update">
+            <div className='dbms-components'>
+                <div className="search">
+                    <WriterSearch setWriters={setWriters} writers={writers}/>
+                </div>
                 <div className="insert">
                     <InsertWriter setWriters={setWriters} />
                 </div>
@@ -25,7 +29,6 @@ function Writers() {
                     <UpdateWriter setWriters={setWriters}/>
                 </div>
             </div>
-            
         </div>
     </>
     );

@@ -7,6 +7,7 @@ body {
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 100%;
 }
 
 .App-header {
@@ -15,7 +16,6 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    font-size: calc(8px + 2vmin);
     color: #5F586C;
 }
 
@@ -28,9 +28,8 @@ nav {
     justify-content: center;
     border-top: 0.5em solid #2e1c54;
     border-bottom: thin solid #2e1c54;
-    font-size: calc(10px + 1.5vmin);
+    font-size: 1.2em;
     margin-bottom: 20px;
-    height: 50px;
 }
 
 nav ul {
@@ -66,10 +65,6 @@ h1 {
     font-weight: lighter;
 }
 
-.logo {
-    width: 100%;
-}
-
 /* 
     Components grand layout
 */
@@ -80,8 +75,9 @@ h1 {
 
 p {
     text-align: center;
+    font-size: 1.5em;
 }
-.insert-update {
+.dbms-components {
     display: flex;
     justify-content: center;
 }
@@ -134,56 +130,53 @@ tr:hover .toggle {
 }
 
 /* 
-    Insert components styling
+    Insert and Update components styling
 */
-.insert-form, .update-form {
-    width: 100%;
-}
-
-.insert {
-    margin-right: 1em;
-    width: 50%;
-}
-.update {
-    width: 50%;
-}
-
-form {
-    text-align: center;
-    border: 1px solid #5F586C;
-    border-radius: 10px;
+.insert, .update, .search {
+    width: 30%;
+    margin-right: 1.5em;
+    border-top: 0.5em solid #5F586C;
+    border-bottom: thin solid #5F586C;
     box-shadow: 0px 2px 23px -3px rgba(0,0,0,0.33);
 }
 
-input {
-    border: none;
-    background: transparent;
-    border-bottom: 1px solid #5F586C;
-    font-size: 20px;
-    text-align: center;
-    padding: 0.3em;
-    margin: 0.8em;
-    width: 70%;
-    justify-content: center;
+form {
+    padding-bottom: 3em;
 }
 
-.photo-upload {
-    width: 44%;
+.formContents{
+    margin:0 auto;
+    width: 70%;
 }
-.date-joined {
-    width: 47%;
+
+
+select, form input[type=file] {
+    padding: 0.5em;
+    appearance: none;
 }
+
+label {
+    display: block;
+    font-size: 1.3em;
+    margin-bottom: 0.2em;
+}
+
+input, textarea, select {
+    margin-bottom: 1.5em;
+}
+
+/*
+    Button
+*/
 
 button {
-    padding: 1.5em 3em;
-    margin: 1em;
+    padding: 0.6em 1em;
     border-radius: 10px;
     border: 1px solid #5F586C;
     background-color: #fff;
     color:#2e1c54;
     font-weight: bolder;
-    font-size: 12px;
-
+    font-size: 1em;
 }
 
 button:hover {
@@ -192,9 +185,3 @@ button:hover {
     background-color: #5F586C;
     color: #ffffff;
 }
-
-/* 
-    Update Components styling
-*/
-
-

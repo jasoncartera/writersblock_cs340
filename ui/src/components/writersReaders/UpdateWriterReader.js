@@ -1,53 +1,37 @@
 import React from 'react';
 
-function UpdateWriterReader({ setWritersReaders, writerReader }) {
+function UpdateWriterReader({ setWritersReaders, writers, readers }) {
 
     
     return (
         <form className="update-form" id="update-writer-reader-form">
+            <div className='formContents'>
+                <p>Update WriterReader</p>
+                <div className='input-group'>
+                    <label for="writerReader-id">Id:</label>
+                </div>
+                <div className='input-group'>
+                    <input type="number" name="writerReader-id" id="writerReader-id"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="update-readerid">Reader</label>
+                    <select type="number" name="update-readerid" id="update-readerid">
+                        <option value="" selected>Select a Reader</option>
+                        {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
+                    </select>
+                </div>
+                <div className='input-group'>
+                    <label for="update-writerid">Writer</label>
+                    <select type="number" name="update-writerid" id="update-writerid">
+                        <option value="" selected>Select a Writer</option>
+                        {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                    </select>
+                </div>
 
-            <p>Update Writer</p>
-            
-            <div>
-                <label for="readerid">ReaderId:</label>
-                <input type="number" name="readerid" id="readerid"></input>
-            </div>
-            
-            <div>
-                <label for="writerid">WriterId:</label>
-                <input type="number" name="writerid" id="writerid"></input>
-            </div>
-
-            <button type="submit">UPDATE</button>
-                    
+                <button type="submit">UPDATE</button>
+            </div>  
         </form>
     );
 }
 
 export default UpdateWriterReader;
-
-/*
-        <form className="update-form" id="update-writer-reader-form">
-
-            <p>Update WriterReader</p>
-            
-            <div>
-                <label for="update-readerid">ReaderId</label>
-                <select type="number" name="update-readerid" id="update-readerid">
-                    <option value="" selected>Select a Reader</option>
-                    {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
-                </select>
-            </div>
-            
-            <div>
-                <label for="update-writerid">WriterId</label>
-                <select type="number" name="update-writerid" id="update-writerid">
-                    <option value="" selected>Select a Writer</option>
-                    {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
-                </select>
-            </div>
-
-            <button type="submit">UPDATE</button>
-                    
-        </form>
- */

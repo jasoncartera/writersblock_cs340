@@ -17,12 +17,12 @@ function CommentList({ comments }) {
                 <thead>
                     <tr className="list-row">
                         <th>Id</th>
-                        <th>ReaderId</th>
+                        <th>Reader Username</th>
                         <th>PostId</th>
                         <th>Content</th>
                         <th>Posted</th>
-                        <th></th>
-                        <th></th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>

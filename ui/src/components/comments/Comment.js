@@ -5,7 +5,7 @@ function Comment({ comment }) {
     return (
         <tr className="list-row">
             <td>{comment.Id}</td>
-            <td>{comment.ReaderId}</td>
+            <td>{comment.Username}</td>
             <td>{comment.PostId}</td>
             <td>{comment.Content}</td>
             <td>{comment.Posted}</td>

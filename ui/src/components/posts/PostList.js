@@ -18,12 +18,12 @@ function PostList({ posts }) {
                 <thead>
                     <tr className="list-row">
                         <th>Id</th>
-                        <th>WriterId</th>
+                        <th>Writer Username</th>
                         <th>Content</th>
                         <th>Photo</th>
                         <th>Posted</th>
-                        <th></th>
-                        <th></th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>

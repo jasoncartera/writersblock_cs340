@@ -5,33 +5,30 @@ function UpdateWriter({ setWriters }) {
     
     return (
         <form className="update-form" id="update-writer-form">
-            
-            <p>Update Writer</p>
-            
-            <div>
-                <input type="text" name="writer-input-username" id="writer-input-username" placeholder='Username'></input>
+            <div className='formContents'>
+                <p>Update Writer</p>
+                <div className='input-group'>
+                    <label for="writer-id">Id:</label>
+                    <input type="number" name="writer-id" id="writer-id"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-username">Username:</label>
+                    <input type="text" name="writer-username" id="writer-update-username"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-email">Email:</label>
+                    <input type="text" name="writer-email" id="writer-update-email"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-photo">Update Photo:</label>
+                    <input type="file" name="writer-photo" id="writer-update-photo"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-date-joined">Date Joined:</label>
+                    <input type="date" name="writer-date-joined" id="writer-update-date-joined"></input>
+                </div>
+                <button type="submit">UPDATE</button>
             </div>
-
-            <div>
-                <input type="text" name="writer-input-email" id="writer-input-email" placeholder='Email'></input>
-            </div>
-
-            <div>
-                <label for="upload-photo">Upload photo:</label>
-            </div>
-            <div>
-                <input type="file" name="writer-upload-photo" id="writer-upload-photo"></input>
-            </div>
-
-            <div>
-                <label for="writer-date-joined">Date Joined:</label>
-            </div>
-            <div>
-                <input type="date" name="writer-date-joined" id="writer-date-joined"></input>
-            </div>
-
-            <button type="submit">UPDATE</button>
-
         </form>
     );
 }

@@ -13,33 +13,34 @@ function UpdatePost({ setPosts, writers }) {
     
     return (
         <form className="update-form" id="update-post-form">
-            
-            <p>Update Post</p>
-            <div>
-                 <label for="post-input-writerid">WriterId</label>
-                <select type="number" name="post-input-writerid" id="post-input-writerid">
-                    <option value="" selected>Select a Writer</option>
-                    {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
-                </select>
+            <div class='formContents'>
+                <p>Update Post</p>
+                <div className='input-group'>
+                    <label for="post-id">Id:</label>
+                    <input type="number" name="post-id" id="post-update-id"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="post-writerid">Writer:</label>
+                    <select type="number" name="post-writerid" id="post-update-writerid">
+                        <option value="" selected>Select a Writer</option>
+                        {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                    </select>
+                </div>
+                <div className='input-group'>
+                    <label for="post-photo">Update Photo:</label>
+                    <input type="file" name="post-photo" id="post-update-photo"></input>
+                </div>
+                     
+                <div className='input-group'>
+                    <label for="post-update-date">Post Date:</label>
+                    <input type="date" name="post-date" id="post-update-date"></input>
+                </div>       
+                <div className='input-group'>
+                    <label for="post-content">Content:</label>
+                    <textarea name="post-update-content" id="post-update-content" rows="4" cols="30"></textarea>
+                </div>
+                <button type="submit">UPDATE</button>
             </div>
-                    
-            <div>
-                <label for="post-content">Content:</label>
-                <textarea name="post-content" id="post-content" rows="8" cols="50"></textarea>
-            </div>
-
-            <div>
-                <label for="post-photo">Upload photo:</label>
-                <input type="file" name="post-photo" id="post-photo"></input>
-            </div>
-                    
-            <div>
-                <label for="post-date">Post Date:</label>
-                <input type="date" name="post-date" id="post-date"></input>
-            </div>       
-
-            <button type="submit">UPDATE</button>
-
         </form>
     );
 }

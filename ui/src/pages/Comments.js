@@ -4,6 +4,7 @@ import InsertComment from '../components/comments/InsertComment';
 import { useState } from 'react';
 import { useOutletContext } from "react-router-dom";
 import UpdateComment from '../components/comments/UpdateComment';
+import CommentSearch from '../components/comments/CommentSearch';
 
 function Comments() {
 
@@ -21,7 +22,10 @@ function Comments() {
                 <div className="list">
                     <CommentList comments={comments} />
                 </div>
-                <div className='insert-update'>
+                <div className='dbms-components'>
+                <div className="search">
+                        <CommentSearch setComments={setComments} readers={readers} />
+                    </div>
                     <div className="insert">
                         <InsertComment setComments={setComments} readers={readers}/>
                     </div>

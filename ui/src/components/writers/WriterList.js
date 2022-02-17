@@ -21,8 +21,8 @@ function WriterList({ writers }) {
                         <th>Email</th>
                         <th>Photo</th>
                         <th>Date Joined</th>
-                        <th></th>
-                        <th></th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -2,7 +2,8 @@ import React from 'react';
 import InsertReader from '../components/readers/InsertReader';
 import ReaderList from '../components/readers/ReaderList';
 import { useOutletContext } from "react-router-dom";
-import UpdateWriter from '../components/writers/UpdateWriter';
+import UpdateReader from '../components/readers/UpdateReader';
+import ReaderSearch from '../components/readers/ReaderSearch';
 
 
 function Readers() {
@@ -18,12 +19,15 @@ function Readers() {
                 <div className="list">
                     <ReaderList readers={readers}/>
                 </div>
-                <div className='insert-update'>
+                <div className='dbms-components'>
+                    <div className="search">
+                        <ReaderSearch setReaders={setReaders} readers={readers}/>
+                    </div>
                     <div className="insert">
                         <InsertReader setReaders={setReaders}/>
                     </div>
                     <div className="update">
-                        <UpdateWriter setReaders={setReaders}/>
+                        <UpdateReader setReaders={setReaders}/>
                     </div>
                 </div>
             </div>

@@ -5,32 +5,33 @@ function UpdateReader({ setReaders, reader }) {
     
     return (
         <form className="update-form" id="update-reader-form">
-            
-            <p>Update Reader</p>            
-            <div>
-                <input type="text" name="reader-input-username" id="reader-input-username" placeholder='Username'></input>
-            </div>
+            <div className='formContents'>
+                <p>Update Reader</p>  
+                <div className='input-group'>
+                    <label for="reader-id">Id:</label>
+                    <input type="number" name="reader-id" id="reader-update-id"></input>
+                </div>
 
-            <div>
-                <input type="text" name="reader-input-email" id="reader-input-email" placeholder='Email'></input>
-            </div>
-            
-            <div>
-                <label for="upload-photo">Upload photo:</label>
-            </div>
-            <div>
-                <input type="file" name="reader-upload-photo" id="reader-upload-photo"></input>
-            </div>
+                <div className='input-group'>
+                    <label for="reader-username">Username:</label>
+                    <input type="text" name="reader-username" id="reader-update-username"></input>
+                </div>
 
-            <div>
-                <label for="reader-date-joined">Date Joined:</label>
-            </div>
-            <div>
-                <input type="date" name="reader-date-joined" id="reader-date-joined"></input>
-            </div>
+                <div className='input-group'>
+                    <label for="reader-email">Email:</label>
+                    <input type="text" name="reader-email" id="reader-update-email"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="reader-photo">Update Photo:</label>
+                    <input type="file" name="reader-photo" id="reader-update-photo"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="reader-date-joined">Date Joined:</label>
+                    <input type="date" name="reader-date-joined" id="reader-update-date-joined"></input>
+                </div>
 
-            <button type="submit">UPDATE</button>
-                    
+                <button type="submit">UPDATE</button>
+            </div>   
         </form>
     );
 }

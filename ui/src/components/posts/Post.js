@@ -5,7 +5,7 @@ function Post({ post }) {
     return (
         <tr className="list-row">
             <td>{post.Id}</td>
-            <td>{post.WriterId}</td>
+            <td>{post.Username}</td>
             <td>{post.Content}</td>
             <td>{post.Photo}</td>
             <td>{post.Posted}</td>

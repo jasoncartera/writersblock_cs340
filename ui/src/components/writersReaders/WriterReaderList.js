@@ -19,8 +19,8 @@ function WriterReaderList({ writersReaders }) {
                         <th>Id</th>
                         <th>Writer Username</th>
                         <th>Reader Username</th>
-                        <th></th>
-                        <th></th>
+                        <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
