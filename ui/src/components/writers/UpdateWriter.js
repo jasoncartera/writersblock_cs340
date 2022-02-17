@@ -1,0 +1,36 @@
+import React from 'react';
+
+function UpdateWriter({ setWriters }) {
+
+    
+    return (
+        <form className="update-form" id="update-writer-form">
+            <div className='formContents'>
+                <p>Update Writer</p>
+                <div className='input-group'>
+                    <label for="writer-id">Id:</label>
+                    <input type="number" name="writer-id" id="writer-id"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-username">Username:</label>
+                    <input type="text" name="writer-username" id="writer-update-username"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-email">Email:</label>
+                    <input type="text" name="writer-email" id="writer-update-email"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-photo">Update Photo:</label>
+                    <input type="file" name="writer-photo" id="writer-update-photo"></input>
+                </div>
+                <div className='input-group'>
+                    <label for="writer-date-joined">Date Joined:</label>
+                    <input type="date" name="writer-date-joined" id="writer-update-date-joined"></input>
+                </div>
+                <button type="submit">UPDATE</button>
+            </div>
+        </form>
+    );
+}
+
+export default UpdateWriter;

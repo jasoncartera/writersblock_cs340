@@ -1,46 +1,40 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import InsertWriterReader from '../components/writersReaders/InsertWriterReader';
+import WriterReaderList from '../components/writersReaders/WriterReaderList';
+import { useState } from 'react';
+import UpdateWriterReader from '../components/writersReaders/UpdateWriterReader';
+import { useOutletContext } from "react-router-dom";
+import WritersReadersSearch from '../components/writersReaders/WritersReadersSearch';
+
 
 function WritersReaders() {
+
+    // Set state
+    const [writersReaders, setWritersReaders] = useState([]);
+    const [readers] = useOutletContext();
+    const [writers] = useOutletContext();
+
     return (
         <>
-            <div className="Entity-header">
-
+            <div className="title">
                 <h1>Manage WritersReaders</h1>
-                <Link to="/">Home</Link>
             </div>
-            <div className="Entity-page">
-                <div className="right-panel">
-                    <table className="Entity-page-table">
-                        <thead>
-                            <tr className="Entity-page-row">
-                                <th>Id</th>
-                                <th>WriterId</th>
-                                <th>ReaderId</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="Entity-page-row">
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td><button>Delete</button></td>
-                                <td><button>Update</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div className="page-body">
+                <div className="list">
+                    <WriterReaderList writersReaders={writersReaders}/>
                 </div>
-                <div className="left-panel">
-                    <form className="Entity-page-form" id="writersreader-form">
-                        <label for="readerid">ReaderId:</label>
-                        <input type="number" name="readerid" id="readerid"></input>
-
-                        <label for="writerid">WriterId:</label>
-                        <input type="number" name="writerid" id="writerid"></input>
-
-                        <input type="submit"></input>
-                    </form>
+                <div className='dbms-components'>
+                    <div className="insert">
+                        <WritersReadersSearch setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
+                    </div>
+                    <div className="insert">
+                        <InsertWriterReader setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
+                    </div>
+                    <div className="update">
+                        <UpdateWriterReader setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
+                    </div>
                 </div>
+                
             </div>
         </>
     );
