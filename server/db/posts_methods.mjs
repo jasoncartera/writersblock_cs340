@@ -17,7 +17,8 @@ const createPost = async (values) => {
     return result;
 };
 
-/* Retrieve all posts by username */
+/* Retrieve all posts by username 
+Update to select from (Subquery where username = :username) As PostUser */
 const selectPostsByUsername = async (username) => {
     const selectPostByUsernameQuery = `SELECT Posts.Id, Username, Content, Posts.Photo, Posted 
                                        FROM Writers 

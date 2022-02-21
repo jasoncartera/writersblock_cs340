@@ -17,7 +17,8 @@ const createComment = async (values) => {
     return result;
 };
 
-/* Retrieve all comments by username */
+/* Retrieve all comments by username
+Update to select from (SUBQUEREY like post method) */
 const selectCommentsByUsername = async (username) => {
     const selectCommentsByUsernameQuery = `SELECT Comments.Id, PostId, Username, Content, Posted 
                                            FROM Readers 
@@ -57,7 +58,7 @@ const updateComment = async (_id, values) => {
     return result;
 };
 
-/* Delete a post by PostId*/
+/* Delete a post by CommentId*/
 const deleteComment = async (_id) => {
     const deleteCommentQuery = `DELETE FROM Comments WHERE id=`+db.escape(_id);
     const result = await dbQuery(deleteCommentQuery);
