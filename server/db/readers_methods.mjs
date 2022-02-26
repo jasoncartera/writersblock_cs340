@@ -53,6 +53,7 @@ https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-aw
 
 /* Get all readers */
 router.get('/readers', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const data = await selectAllReaders();
         // Send json response
@@ -65,6 +66,7 @@ router.get('/readers', async (req, res) => {
 
 /* Get a reader by username */
 router.get('/readers/:username', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectOneReader(req.params.username);
         if (result.length == 0) {
@@ -80,6 +82,7 @@ router.get('/readers/:username', async (req, res) => {
 
 /* Create reader */
 router.post('/readers', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
         const result = await createReader(values);
@@ -92,6 +95,7 @@ router.post('/readers', async (req, res) => {
 
 /* Update reader by id */
 router.put('/readers/:_id', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
         const result = await updateReader(req.params._id, values);
@@ -105,6 +109,7 @@ router.put('/readers/:_id', async (req, res) => {
 
 /* Delete a reader by id */
 router.delete('/readers/:_id', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deleteReader(req.params._id);
         if (result.affectedRows == 0) {

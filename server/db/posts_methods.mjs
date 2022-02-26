@@ -61,6 +61,7 @@ https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-aw
 
 /* Get all posts */
 router.get('/posts', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const data = await selectAllPosts();
         // Send json response
@@ -73,6 +74,7 @@ router.get('/posts', async (req, res) => {
 
 /* Get all posts by username */
 router.get('/posts/:username', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectPostsByUsername(req.params.username);
         if (result.length == 0) {
@@ -88,6 +90,7 @@ router.get('/posts/:username', async (req, res) => {
 
 /* Create a post */
 router.post('/posts', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.writerId, req.body.content, req.body.photo, req.body.posted];
         const result = await createPost(values);
@@ -100,6 +103,7 @@ router.post('/posts', async (req, res) => {
 
 /* Update post by id */
 router.put('/posts/:_id', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.writerId, req.body.content, req.body.photo, req.body.posted];
         const result = await updatePost(req.params._id, values);
@@ -113,6 +117,7 @@ router.put('/posts/:_id', async (req, res) => {
 
 /* Delete a post by id */
 router.delete('/posts/:_id', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deletePost(req.params._id);
         if (result.affectedRows == 0) {

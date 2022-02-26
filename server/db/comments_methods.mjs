@@ -72,6 +72,7 @@ https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-aw
 
 /* Get all comments */
 router.get('/comments', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const data = await selectAllComments();
         // Send json response
@@ -84,6 +85,7 @@ router.get('/comments', async (req, res) => {
 
 /* Get all comments by username */
 router.get('/comments/:username', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectCommentsByUsername(req.params.username);
         if (result.length == 0) {
@@ -99,6 +101,7 @@ router.get('/comments/:username', async (req, res) => {
 
 /* Get all comments by PostId */
 router.get('/comments/byPost/:postId', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectAllCommentsByPostId(req.params.postId);
         if (result.length == 0) {
@@ -114,6 +117,7 @@ router.get('/comments/byPost/:postId', async (req, res) => {
 
 /* Create a post */
 router.post('/comments', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.readerId, req.body.postId, req.body.content, req.body.posted];
         const result = await createComment(values);
@@ -126,6 +130,7 @@ router.post('/comments', async (req, res) => {
 
 /* Update post by id */
 router.put('/comments/:_id', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.readerId, req.body.postId, req.body.content, req.body.posted];
         const result = await updateComment(req.params._id, values);
@@ -138,6 +143,7 @@ router.put('/comments/:_id', async (req, res) => {
 
 /* Delete a post by id */
 router.delete('/comments/:_id', async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deleteComment(req.params._id);
         if (result.affectedRows == 0) {
