@@ -9,18 +9,18 @@ function InsertWriterReader({ setWritersReaders, readers, writers }) {
                 <p>Insert New WriterReader</p>
 
                 <div className='input-group'>
-                    <label for="insert-readerid">Reader</label>
-                    <select type="number" name="insert-readerid" id="insert-readerid">
-                        <option value="" selected>Select a Reader</option>
-                        {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
+                    <label htmlFor="insert-readerid">Reader</label>
+                    <select type="number" name="insert-readerid" id="insert-readerid" defaultValue={''}>
+                        <option value="">Select a Reader</option>
+                        {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
                     </select>
                 </div>
                 
                 <div className='input-group'>
-                    <label for="insert-writerid">Writer</label>
-                    <select type="number" name="insert-writerid" id="insert-writerid">
-                        <option value="" selected>Select a Writer</option>
-                        {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                    <label htmlFor="insert-writerid">Writer</label>
+                    <select type="number" name="insert-writerid" id="insert-writerid" defaultValue={''}>
+                        <option value="">Select a Writer</option>
+                        {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                     </select>
                 </div>
 

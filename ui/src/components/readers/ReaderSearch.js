@@ -14,10 +14,10 @@ function ReaderSearch({ setReaders, readers }) {
             <div className='formContents'>
                 <p>Search Readers Table</p>
                 <div className='input-group'>
-                    <label for="readerid">Search by Reader:</label>
-                    <select type="number" name="readerid" id="search-readerid">
-                        <option value="" selected>Select a Reader</option>
-                        {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
+                    <label htmlFor="readerid">Search by Reader:</label>
+                    <select type="number" name="readerid" id="search-readerid" defaultValue={''}>
+                        <option value="">Select a Reader</option>
+                        {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
                     </select>
                 </div>
                 <button type="submit">SUBMIT</button>

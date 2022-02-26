@@ -1,7 +1,7 @@
 import React from 'react';
 import InsertWriterReader from '../components/writersReaders/InsertWriterReader';
 import WriterReaderList from '../components/writersReaders/WriterReaderList';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import UpdateWriterReader from '../components/writersReaders/UpdateWriterReader';
 import { useOutletContext } from "react-router-dom";
 import WritersReadersSearch from '../components/writersReaders/WritersReadersSearch';
@@ -9,10 +9,21 @@ import WritersReadersSearch from '../components/writersReaders/WritersReadersSea
 
 function WritersReaders() {
 
-    // Set state
     const [writersReaders, setWritersReaders] = useState([]);
-    const [readers] = useOutletContext();
-    const [writers] = useOutletContext();
+
+    const getWritersReaders = async () => {
+        const response = await fetch(' https://writers-block-serve.herokuapp.com/writersreaders');
+        const wrs = await response.json();
+        setWritersReaders(wrs);
+    }
+        
+    useEffect(() => {
+        getWritersReaders();
+    }, []);
+
+    const context = useOutletContext();
+    const readers = context.read[0];
+    const writers = context.write[0];
 
     return (
         <>

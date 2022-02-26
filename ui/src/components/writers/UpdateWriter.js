@@ -8,23 +8,23 @@ function UpdateWriter({ setWriters }) {
             <div className='formContents'>
                 <p>Update Writer</p>
                 <div className='input-group'>
-                    <label for="writer-id">Id:</label>
+                    <label htmlFor="writer-id">Id:</label>
                     <input type="number" name="writer-id" id="writer-id"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-username">Username:</label>
+                    <label htmlFor="writer-username">Username:</label>
                     <input type="text" name="writer-username" id="writer-update-username"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-email">Email:</label>
+                    <label htmlFor="writer-email">Email:</label>
                     <input type="text" name="writer-email" id="writer-update-email"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-photo">Update Photo:</label>
+                    <label htmlFor="writer-photo">Update Photo:</label>
                     <input type="file" name="writer-photo" id="writer-update-photo"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-date-joined">Date Joined:</label>
+                    <label htmlFor="writer-date-joined">Date Joined:</label>
                     <input type="date" name="writer-date-joined" id="writer-update-date-joined"></input>
                 </div>
                 <button type="submit">UPDATE</button>

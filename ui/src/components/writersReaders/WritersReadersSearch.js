@@ -12,13 +12,13 @@ function WritersReadersSearch({ setPosts, writers, readers }) {
     return (
         <>
             <form className="search-form" id="search-writer-form">
-                <div class='formContents'>
+                <div className='formContents'>
                     <p>Search WritersReaders</p>
                         <div className='input-group'>
-                            <label for="writerid">Search by Writer:</label>
+                            <label htmlFor="writerid">Search by Writer:</label>
                             <select type="number" name="writerid" id="search-writerid">
-                                <option value="" selected>Select a Writer</option>
-                                {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                                <option value="">Select a Writer</option>
+                                {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                             </select>
                         </div>
                     <button type="submit">SUBMIT</button>
@@ -27,10 +27,10 @@ function WritersReadersSearch({ setPosts, writers, readers }) {
             <form className="search-form" id="search-reader-form-username">
                 <div className='formContents'>
                     <div className='input-group'>
-                        <label for="readerid">Search by Reader:</label>
-                        <select type="number" name="readerid" id="search-readerid">
-                            <option value="" selected>Select a Reader</option>
-                            {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
+                        <label htmlFor="readerid">Search by Reader:</label>
+                        <select type="number" name="readerid" id="search-readerid" defaultValue={''}>
+                            <option value="">Select a Reader</option>
+                            {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
                         </select>
                     </div>
                     <button type="submit">SUBMIT</button>

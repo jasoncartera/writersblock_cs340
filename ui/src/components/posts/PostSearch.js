@@ -11,13 +11,13 @@ function PostSearch({ setPosts, writers }) {
     
     return (
         <form className="search-form" id="search-post-form">
-            <div class='formContents'>
+            <div className='formContents'>
                 <p>Search Posts</p>
                     <div className='input-group'>
-                        <label for="post-writerid">Search by Writer:</label>
-                        <select type="number" name="post-writerid" id="post-writerid">
-                            <option value="" selected>Select a Writer</option>
-                            {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                        <label htmlFor="post-writerid">Search by Writer:</label>
+                        <select type="number" name="post-writerid" id="post-writerid" defaultValue={''}>
+                            <option value="">Select a Writer</option>
+                            {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                         </select>
                     </div>
                 <button type="submit">SUBMIT</button>

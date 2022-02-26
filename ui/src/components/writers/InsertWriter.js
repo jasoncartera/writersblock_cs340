@@ -8,19 +8,19 @@ function InsertWriter({ setWriters }) {
             <div className='formContents'>
                 <p>Insert New Writer</p>
                 <div className='input-group'>
-                    <label for="writer-username">Username:</label>
+                    <label htmlFor="writer-username">Username:</label>
                     <input type="text" name="writer-username" id="writer-username"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-email">Email:</label>
+                    <label htmlFor="writer-email">Email:</label>
                     <input type="text" name="writer-email" id="writer-email"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-photo">Upload photo:</label>
+                    <label htmlFor="writer-photo">Upload photo:</label>
                     <input type="file" name="writer-photo" id="writer-photo"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="writer-date-joined">Date Joined:</label>
+                    <label htmlFor="writer-date-joined">Date Joined:</label>
                     <input type="date" name="writer-date-joined" id="writer-date-joined"></input>
                 </div>
                 <button type="submit">SUBMIT</button>

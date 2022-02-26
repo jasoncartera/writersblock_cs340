@@ -14,28 +14,28 @@ function InsertPost({ setPosts, writers }) {
     return (
         <form className="insert-form" id="add-post-form">
             
-            <div class='formContents'>
+            <div className='formContents'>
                 <p>Insert New Post</p>
                     <div className='input-group'>
-                        <label for="post-writerid">Writer:</label>
-                        <select type="number" name="post-writerid" id="post-writerid">
-                            <option value="" selected>Select a Writer</option>
-                            {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                        <label htmlFor="post-writerid">Writer:</label>
+                        <select type="number" name="post-writerid" id="post-writerid" defaultValue={''}>
+                            <option value="">Select a Writer</option>
+                            {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                         </select>
                     </div>
                             
                     <div className='input-group'>
-                        <label for="post-photo">Upload photo:</label>
+                        <label htmlFor="post-photo">Upload photo:</label>
                         <input type="file" name="post-photo" id="post-photo"></input>
                     </div>
                             
                     <div className='input-group'>
-                        <label for="post-date">Post Date:</label>
+                        <label htmlFor="post-date">Post Date:</label>
                         <input type="date" name="post-date" id="post-date"></input>
                     </div>  
                      
                     <div className='input-group'>
-                        <label for="post-content">Content:</label>
+                        <label htmlFor="post-content">Content:</label>
                         <textarea name="post-content" id="post-content" rows="4" cols="30"></textarea>
                     </div>
                 <button type="submit">SUBMIT</button>

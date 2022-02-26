@@ -8,23 +8,23 @@ function UpdateWriterReader({ setWritersReaders, writers, readers }) {
             <div className='formContents'>
                 <p>Update WriterReader</p>
                 <div className='input-group'>
-                    <label for="writerReader-id">Id:</label>
+                    <label htmlFor="writerReader-id">Id:</label>
                 </div>
                 <div className='input-group'>
                     <input type="number" name="writerReader-id" id="writerReader-id"></input>
                 </div>
                 <div className='input-group'>
-                    <label for="update-readerid">Reader</label>
-                    <select type="number" name="update-readerid" id="update-readerid">
-                        <option value="" selected>Select a Reader</option>
-                        {readers.map((reader, i) => <option value={reader.Id}>{reader.Username}</option>)}
+                    <label htmlFor="update-readerid">Reader</label>
+                    <select type="number" name="update-readerid" id="update-readerid" defaultValue={''}>
+                        <option value="">Select a Reader</option>
+                        {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
                     </select>
                 </div>
                 <div className='input-group'>
-                    <label for="update-writerid">Writer</label>
-                    <select type="number" name="update-writerid" id="update-writerid">
-                        <option value="" selected>Select a Writer</option>
-                        {writers.map((writer, i) => <option value={writer.Id}>{writer.Username}</option>)}
+                    <label  htmlFor="update-writerid">Writer</label>
+                    <select type="number" name="update-writerid" id="update-writerid" defaultValue={''}>
+                        <option value="">Select a Writer</option>
+                        {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                     </select>
                 </div>
 

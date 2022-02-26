@@ -118,7 +118,7 @@ tr {
 }
 
 th, td {
-    padding: 0.3em;
+    padding: 1em;
 }
 
 .toggle {
@@ -127,6 +127,10 @@ th, td {
 
 tr:hover .toggle {
     visibility: visible;
+}
+
+tr:hover td {
+    background-color: #f8f7f7;
 }
 
 /* 

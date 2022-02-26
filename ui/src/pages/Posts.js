@@ -7,9 +7,9 @@ import PostSearch from '../components/posts/PostSearch';
 
 function Posts() {
 
-    const [writers] = useOutletContext();
-    const [posts] = useOutletContext();
-    const [setPosts] = useOutletContext();
+    const context = useOutletContext();
+    let writers = context.write[0];
+    let [posts, setPosts] = context.post;
 
     return (
         <>

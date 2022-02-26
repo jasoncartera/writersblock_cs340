@@ -1,16 +1,26 @@
 import React from 'react';
 import CommentList from '../components/comments/CommentList';
 import InsertComment from '../components/comments/InsertComment';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext } from "react-router-dom";
 import UpdateComment from '../components/comments/UpdateComment';
 import CommentSearch from '../components/comments/CommentSearch';
 
 function Comments() {
 
-    // Get, Set state
-    const [readers] = useOutletContext();
-    const [comments, setComments] = useState([]);
+    const context = useOutletContext();
+    let readers = context.read[0];
+
+    let [comments, setComments] = useState([]);
+    const getComments = async () => {
+        const response = await fetch(' https://writers-block-serve.herokuapp.com/comments');
+        const comments = await response.json();
+        setComments(comments);
+    }
+        
+    useEffect(() => {
+        getComments();
+    }, []);
 
     return (
         <>

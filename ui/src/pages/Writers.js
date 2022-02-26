@@ -7,7 +7,8 @@ import WriterSearch from "../components/writers/WriterSearch";
 
 function Writers() {
 
-    const [writers, setWriters] = useOutletContext();
+    const context = useOutletContext();
+    const [writers, setWriters] = context.write;
 
     return (
     <>

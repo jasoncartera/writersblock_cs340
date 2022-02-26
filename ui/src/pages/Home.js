@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from "../components/Navigation";
 
 function Home(){
@@ -9,6 +9,30 @@ function Home(){
     const [readers, setReaders] = useState([]);
     const [posts, setPosts] = useState([]);
 
+    const getWriters = async () => {
+        const response = await fetch(' https://writers-block-serve.herokuapp.com/writers');
+        const writers = await response.json();
+        setWriters(writers);
+    }
+
+    const getReaders = async () => {
+        const response = await fetch(' https://writers-block-serve.herokuapp.com/readers');
+        const readers = await response.json();
+        setReaders(readers);
+    }
+
+    const getPosts = async () => {
+        const response = await fetch(' https://writers-block-serve.herokuapp.com/posts');
+        const posts = await response.json();
+        setPosts(posts);
+    }
+        
+    useEffect(() => {
+        getWriters();
+        getReaders();
+        getPosts();
+    }, []);
+
     return (
         <>   
             <Navigation />   
@@ -17,7 +41,7 @@ function Home(){
                 <h1>WritersBlock Management Site</h1>
             </div>
 
-            <Outlet context={[writers, setWriters, readers, setReaders, posts, setPosts]} />
+            <Outlet context={{write: [writers, setWriters], read: [readers, setReaders], post: [posts, setPosts]}} />
         </>
     );
 }

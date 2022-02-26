@@ -8,7 +8,8 @@ import ReaderSearch from '../components/readers/ReaderSearch';
 
 function Readers() {
 
-    const [readers, setReaders] = useOutletContext();
+    const context = useOutletContext();
+    const [readers, setReaders] = context.read;
 
     return (
         <>
