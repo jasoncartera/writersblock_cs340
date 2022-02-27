@@ -4,6 +4,7 @@ import { dbQuery, db } from './connection.mjs'
 import express from 'express';
 const router = express.Router();
 
+app.use(express.json());
 
 /* WritersReaders methods */
 
