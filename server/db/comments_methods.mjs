@@ -4,6 +4,8 @@ import { dbQuery, db } from './connection.mjs'
 import express from 'express';
 const router = express.Router();
 
+router.use(express.json());
+
 
 /* 
     Comments table methods
