@@ -4,7 +4,7 @@ function UpdateReader({ setReaders, reader }) {
 
     
     return (
-        <form className="update-form" id="update-reader-form">
+        <div className="update-form" id="update-reader-form">
             <div className='formContents'>
                 <p>Update Reader</p>  
                 <div className='input-group'>
@@ -30,9 +30,9 @@ function UpdateReader({ setReaders, reader }) {
                     <input type="date" name="reader-date-joined" id="reader-update-date-joined"></input>
                 </div>
 
-                <button type="submit">UPDATE</button>
+                <button type="submit" className="update-button">UPDATE</button>
             </div>   
-        </form>
+        </div>
     );
 }
 

@@ -4,7 +4,7 @@ function UpdateWriter({ setWriters }) {
 
     
     return (
-        <form className="update-form" id="update-writer-form">
+        <div className="update-form" id="update-writer-form">
             <div className='formContents'>
                 <p>Update Writer</p>
                 <div className='input-group'>
@@ -27,9 +27,9 @@ function UpdateWriter({ setWriters }) {
                     <label htmlFor="writer-date-joined">Date Joined:</label>
                     <input type="date" name="writer-date-joined" id="writer-update-date-joined"></input>
                 </div>
-                <button type="submit">UPDATE</button>
+                <button type="submit" className="update-button">UPDATE</button>
             </div>
-        </form>
+        </div>
     );
 }
 

@@ -12,6 +12,7 @@ function InsertWriterReader({ setWritersReaders, readers, writers }) {
     const [readerId, setReaderId] = useState('');
     const [writerId, setWriterId] = useState('');
 
+    // api calls
     const insertWriterReader = async () => {
         const newWriterReader = { writerId, readerId };
         const response = await fetch('https://writers-block-serve.herokuapp.com/writersreaders', {

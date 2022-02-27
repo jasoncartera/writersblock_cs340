@@ -19,6 +19,7 @@ function InsertPost({ setPosts, writers }) {
     const [posted, setPosted] = useState('');
     const [content, setContent] = useState('');
 
+    // api calls
     const insertPost = async () => {
         const newPost = { writerId, content, photo, posted };
         const response = await fetch('https://writers-block-serve.herokuapp.com/posts', {

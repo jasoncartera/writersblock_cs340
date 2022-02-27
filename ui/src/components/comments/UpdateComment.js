@@ -7,7 +7,7 @@ function UpdateComment({ setComments, readers }) {
     const posts = context.post[0];
     
     return (
-        <form className="insert-form" id="add-comment-form">
+        <div className="insert-form" id="add-comment-form">
             <div className='formContents'>
                 <p>Update Comment</p>
                 <div className='input-group'>
@@ -36,9 +36,9 @@ function UpdateComment({ setComments, readers }) {
                     <label htmlFor="comment-update-content">Content:</label>
                     <textarea name="comment-content" id="comment-update-content" rows="4" cols="30"></textarea>
                 </div>
-                <button type="submit">UPDATE</button>
+                <button type="submit" className="update-button">UPDATE</button>
             </div>
-        </form>
+        </div>
     );
 }
 

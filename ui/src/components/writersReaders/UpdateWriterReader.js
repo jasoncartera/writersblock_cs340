@@ -4,7 +4,7 @@ function UpdateWriterReader({ setWritersReaders, writers, readers }) {
 
     
     return (
-        <form className="update-form" id="update-writer-reader-form">
+        <div className="update-form" id="update-writer-reader-form">
             <div className='formContents'>
                 <p>Update WriterReader</p>
                 <div className='input-group'>
@@ -28,9 +28,9 @@ function UpdateWriterReader({ setWritersReaders, writers, readers }) {
                     </select>
                 </div>
 
-                <button type="submit">UPDATE</button>
+                <button type="submit" className="update-button">UPDATE</button>
             </div>  
-        </form>
+        </div>
     );
 }
 

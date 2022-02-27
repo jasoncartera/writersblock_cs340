@@ -14,6 +14,7 @@ function InsertWriter({ setWriters }) {
     const [photo, setPhoto] = useState('');
     const [datejoined, setDateJoined] = useState('');
 
+    // api calls
     const insertWriter = async () => {
         const newWriter = { username, email, photo, datejoined };
         const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {

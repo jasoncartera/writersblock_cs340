@@ -142,9 +142,10 @@ tr:hover td {
     border-top: 0.5em solid #5F586C;
     border-bottom: thin solid #5F586C;
     box-shadow: 0px 2px 23px -3px rgba(0,0,0,0.33);
+    margin-bottom: 4em;
 }
 
-div.insert-form {
+.insert-form {
     padding-bottom: 3em;
 }
 
@@ -154,7 +155,7 @@ div.insert-form {
 }
 
 
-select, .insert-form input[type=file] {
+select, .insert-form input[type=file], .search-form input[type=file] {
     padding: 0.5em;
     appearance: none;
 }
@@ -188,4 +189,8 @@ button:hover {
     text-decoration-color: #2e1c54;
     background-color: #5F586C;
     color: #ffffff;
+}
+
+#restore button, .update-button {
+    margin-bottom: 5em;
 }

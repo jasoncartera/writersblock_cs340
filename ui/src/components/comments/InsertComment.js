@@ -23,6 +23,7 @@ function InsertComment({ setComments, readers }) {
     const [posted, setPosted] = useState('');
     const [content, setContent] = useState('');
 
+    // api calls
     const insertComment = async () => {
         const newComment = { readerId, postId, content, posted };
         const response = await fetch('https://writers-block-serve.herokuapp.com/comments', {

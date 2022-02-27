@@ -14,6 +14,7 @@ function InsertReader({ setReaders }) {
     const [photo, setPhoto] = useState('');
     const [datejoined, setDateJoined] = useState('');
 
+    // api calls
     const insertReader = async () => {
         const newReader = { username, email, photo, datejoined };
         const response = await fetch('https://writers-block-serve.herokuapp.com/readers', {

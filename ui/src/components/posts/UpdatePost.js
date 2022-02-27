@@ -12,7 +12,7 @@ function UpdatePost({ setPosts, writers }) {
 
     
     return (
-        <form className="update-form" id="update-post-form">
+        <div className="update-form" id="update-post-form">
             <div className='formContents'>
                 <p>Update Post</p>
                 <div className='input-group'>
@@ -39,9 +39,9 @@ function UpdatePost({ setPosts, writers }) {
                     <label htmlFor="post-content">Content:</label>
                     <textarea name="post-update-content" id="post-update-content" rows="4" cols="30"></textarea>
                 </div>
-                <button type="submit">UPDATE</button>
+                <button type="submit" className="update-button">UPDATE</button>
             </div>
-        </form>
+        </div>
     );
 }
 
