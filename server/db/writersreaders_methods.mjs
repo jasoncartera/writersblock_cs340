@@ -6,6 +6,23 @@ const router = express.Router();
 
 router.use(express.json());
 
+/*
+    Citation for the following middleware:
+    Date: 2/27/2022
+
+    Adapted from: CORS on ExpressJS
+    Source URL: https://enable-cors.org/server_expressjs.html
+
+    Adapted from: Mithun Satheesh answer on Stack Overflow
+    Sourece URL: https://stackoverflow.com/questions/18642828/origin-origin-is-not-allowed-by-access-control-allow-origin
+*/
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    next();
+});
+
 /* WritersReaders methods */
 
 /* Create a new relationship 
@@ -75,7 +92,6 @@ https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-aw
 /* Get all Relationships */
 
 router.get('/writersreaders', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const data = await selectAllRelationships();
         res.status(200).json(data);
@@ -87,7 +103,6 @@ router.get('/writersreaders', async (req, res) => {
 
 /* Get relationships by writer */
 router.get('/writersreaders/writer/:writer', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectAllRelationshipsWriter(req.params.writer);
         if (result.length == 0) {
@@ -103,7 +118,6 @@ router.get('/writersreaders/writer/:writer', async (req, res) => {
 
 /* Get relationships by reader */
 router.get('/writersreaders/reader/:reader', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectAllRelationshipsReader(req.params.reader);
         if (result.length == 0) {
@@ -119,7 +133,6 @@ router.get('/writersreaders/reader/:reader', async (req, res) => {
 
 /* Add a new relationship */
 router.post('/writersreaders', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.readerId, req.body.writerId];
         const result = await createRelationship(values);
@@ -132,7 +145,6 @@ router.post('/writersreaders', async (req, res) => {
 
 /* Delete a relationship by WritersReaders Id */
 router.delete('/writersreaders/:_id', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deleteRelationshipById(req.params._id);
         if (result.affectedRows == 0) {
@@ -148,7 +160,6 @@ router.delete('/writersreaders/:_id', async (req, res) => {
 
 /* Delete a relationship by Writer and Reader Usernames */
 router.delete('/writersreaders/', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deleteRelationshipByReaderWriter(req.query.reader, req.query.writer);
         if (result.affectedRows == 0) {

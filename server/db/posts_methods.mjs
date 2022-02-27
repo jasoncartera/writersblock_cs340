@@ -6,6 +6,23 @@ const router = express.Router();
 
 router.use(express.json());
 
+/*
+    Citation for the following middleware:
+    Date: 2/27/2022
+
+    Adapted from: CORS on ExpressJS
+    Source URL: https://enable-cors.org/server_expressjs.html
+
+    Adapted from: Mithun Satheesh answer on Stack Overflow
+    Sourece URL: https://stackoverflow.com/questions/18642828/origin-origin-is-not-allowed-by-access-control-allow-origin
+*/
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    next();
+});
+
 /* 
     Posts table methods
 */
@@ -62,7 +79,6 @@ https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-aw
 
 /* Get all posts */
 router.get('/posts', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const data = await selectAllPosts();
         // Send json response
@@ -75,7 +91,6 @@ router.get('/posts', async (req, res) => {
 
 /* Get all posts by username */
 router.get('/posts/:username', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectPostsByUsername(req.params.username);
         if (result.length == 0) {
@@ -91,7 +106,6 @@ router.get('/posts/:username', async (req, res) => {
 
 /* Create a post */
 router.post('/posts', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.writerId, req.body.content, req.body.photo, req.body.posted];
         const result = await createPost(values);
@@ -104,7 +118,6 @@ router.post('/posts', async (req, res) => {
 
 /* Update post by id */
 router.put('/posts/:_id', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.writerId, req.body.content, req.body.photo, req.body.posted];
         const result = await updatePost(req.params._id, values);
@@ -118,7 +131,6 @@ router.put('/posts/:_id', async (req, res) => {
 
 /* Delete a post by id */
 router.delete('/posts/:_id', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deletePost(req.params._id);
         if (result.affectedRows == 0) {

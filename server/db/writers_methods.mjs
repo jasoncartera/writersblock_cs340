@@ -7,6 +7,23 @@ const router = express.Router();
 
 router.use(express.json());
 
+/*
+    Citation for the following middleware:
+    Date: 2/27/2022
+
+    Adapted from: CORS on ExpressJS
+    Source URL: https://enable-cors.org/server_expressjs.html
+
+    Adapted from: Mithun Satheesh answer on Stack Overflow
+    Sourece URL: https://stackoverflow.com/questions/18642828/origin-origin-is-not-allowed-by-access-control-allow-origin
+*/
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    next();
+});
+
 /* 
     Writers table methods.
 */
@@ -55,7 +72,6 @@ https://darifnemma.medium.com/how-to-interact-with-mysql-database-using-async-aw
 
 /* Get all writers */
 router.get('/writers', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const data = await selectAllWriters();
         // Send json response
@@ -68,7 +84,6 @@ router.get('/writers', async (req, res) => {
 
 /* Get a writer by username */
 router.get('/writers/:username', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await selectOneWriter(req.params.username);
         if (result.length == 0) {
@@ -84,7 +99,6 @@ router.get('/writers/:username', async (req, res) => {
 
 /* Create Writer */
 router.post('/writers', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
         const result = await createWriter(values);
@@ -97,7 +111,6 @@ router.post('/writers', async (req, res) => {
 
 /* Update Writer */
 router.put('/writers/:_id', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
         const result = await updateWriter(req.params._id, values);
@@ -111,7 +124,6 @@ router.put('/writers/:_id', async (req, res) => {
 
 /* Delete a writer */
 router.delete('/writers/:_id', async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
     try {
         const result = await deleteWriter(req.params._id);
         if (result.affectedRows == 0) {
