@@ -63,7 +63,8 @@ const selectAllCommentsByPostId = async (postId) => {
 const selectAllComments = async () => {
     const selectAllCommentsQuery = `SELECT Comments.Id, PostId, Username, Content, Posted 
                                     FROM Readers 
-                                    INNER JOIN Comments ON Readers.Id = Comments.ReaderId` 
+                                    INNER JOIN Comments ON Readers.Id = Comments.ReaderId
+                                    ORDER BY Posted DESC` 
 
     const result = await dbQuery(selectAllCommentsQuery);
     return result;

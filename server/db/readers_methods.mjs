@@ -44,7 +44,7 @@ const selectOneReader = async (username) => {
 
 /* Retrieve all readers */
 const selectAllReaders = async () => {
-    const selectAllReadersQuery = `SELECT * FROM Readers`;
+    const selectAllReadersQuery = `SELECT * FROM Readers ORDER BY DateJoined DESC`;
     const result = await dbQuery(selectAllReadersQuery);
     return result;
 };

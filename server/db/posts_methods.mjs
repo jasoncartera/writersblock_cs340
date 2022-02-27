@@ -51,7 +51,8 @@ const selectPostsByUsername = async (username) => {
 const selectAllPosts = async () => {
     const selectAllPostsQuery = `SELECT Posts.Id, Username, Content, Posts.Photo, Posted 
                                  FROM Writers
-                                 INNER JOIN Posts ON Writers.Id = Posts.WriterId`;
+                                 INNER JOIN Posts ON Writers.Id = Posts.WriterId
+                                 ORDER BY Posted DESC`;
 
     const result = await dbQuery(selectAllPostsQuery);
     return result;
