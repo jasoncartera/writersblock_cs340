@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.use(express.json());
 
-
 /* 
     Comments table methods
 */
