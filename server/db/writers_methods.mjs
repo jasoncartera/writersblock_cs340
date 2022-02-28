@@ -48,7 +48,7 @@ const selectOneWriter = async (username) => {
 
 /* Retrieve all writers */
 const selectAllWriters = async () => {
-    const selectAllWritersQuery = `SELECT * FROM Writers ORDER BY DateJoined DESC`;
+    const selectAllWritersQuery = `SELECT * FROM Writers ORDER BY Id`;
     const result = await dbQuery(selectAllWritersQuery);
     return result;
 };

@@ -12,18 +12,21 @@ function Home(){
     const getWriters = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/writers');
         const writers = await response.json();
+        writers.sort((a, b) => (a.Id > b.Id ? 1: -1));
         setWriters(writers);
     }
 
     const getReaders = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/readers');
         const readers = await response.json();
+        readers.sort((a, b) => (a.Id > b.Id ? 1: -1));
         setReaders(readers);
     }
 
     const getPosts = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/posts');
         const posts = await response.json();
+        posts.sort((a, b) => (a.Id > b.Id ? 1: -1));
         setPosts(posts);
     }
         
