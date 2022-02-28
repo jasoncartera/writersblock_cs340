@@ -47,7 +47,7 @@ function InsertWriter({ setWriters }) {
 
     return (
         <div className="insert-form" id="add-writer-form">
-            <form method="post" encType="multipart/form-data">
+            <form onSubmit={insertWriter} method="post" encType="multipart/form-data">
                 <div className='formContents'>
                     <p>Insert New Writer</p>
                     <div className='input-group'>
@@ -87,7 +87,7 @@ function InsertWriter({ setWriters }) {
                             onChange={e => setDateJoined(e.target.value)}>
                         </input>
                     </div>
-                    <button type="submit" onClick={insertWriter}>SUBMIT</button>
+                    <button type="submit">SUBMIT</button>
                 </div>
             </form>
         </div>
