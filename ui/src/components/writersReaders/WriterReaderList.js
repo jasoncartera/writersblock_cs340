@@ -10,6 +10,8 @@ How table is broken up into components is Adapted from:
 Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
 */
 function WriterReaderList({ writersReaders }) {
+    writersReaders.sort((a, b) => a.Id > b.Id ? 1: -1);
+
     return (
         <>
             <p>Current WritersReaders</p>
