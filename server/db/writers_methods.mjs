@@ -3,6 +3,22 @@
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
 const router = express.Router();
+import path from 'path';
+import multer from 'multer';
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, '../images'); 
+    },
+    fileName: (req, file, callBack) =>{
+        console.log(file);
+        callBack(null, Date.now + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({storage: storage});
+
+
 
 
 router.use(express.json());
@@ -98,7 +114,7 @@ router.get('/writers/:username', async (req, res) => {
 });
 
 /* Create Writer */
-router.post('/writers', async (req, res) => {
+router.post('/writers', upload.single('photo'), async (req, res) => {
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
         const result = await createWriter(values);

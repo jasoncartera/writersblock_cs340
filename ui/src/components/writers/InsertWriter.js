@@ -44,7 +44,7 @@ function InsertWriter({ setWriters }) {
     };
 
     return (
-        <div className="insert-form" id="add-writer-form">
+        <form className="insert-form" id="add-writer-form" encType='multipart/form-data'>
             <div className='formContents'>
                 <p>Insert New Writer</p>
                 <div className='input-group'>
@@ -66,10 +66,10 @@ function InsertWriter({ setWriters }) {
                     </input>
                 </div>
                 <div className='input-group'>
-                    <label htmlFor="writer-photo">Upload photo:</label>
+                    <label htmlFor="photo">Upload photo:</label>
                     <input  type="file" 
-                            name="writer-photo" 
-                            id="writer-photo"
+                            name="photo" 
+                            id="photo"
                             value={photo}
                             onChange={e => setPhoto(e.target.value)}>
                     </input>
@@ -85,7 +85,7 @@ function InsertWriter({ setWriters }) {
                 </div>
                 <button type="submit" onClick={insertWriter}>SUBMIT</button>
             </div>
-        </div>
+        </form>
     );
 }
 
