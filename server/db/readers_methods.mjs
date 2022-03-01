@@ -2,9 +2,9 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
-import multer from 'multer';
+import {uploadImg} from '../file_upload.mjs';
 
-const upload = multer({ dest: './uploads/' });
+const upload = uploadImg;
 const router = express.Router();
 
 router.use(express.json());
