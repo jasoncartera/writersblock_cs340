@@ -101,8 +101,7 @@ router.get('/writers/:username', async (req, res) => {
 });
 
 /* Create Writer */
-router.post('/writers', upload.single('photo'), async (req, res) => {
-    console.log(req.file);
+router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
     try {
         var image = req.file;
         if (image === undefined) {

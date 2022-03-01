@@ -13,20 +13,23 @@ function InsertWriter({ setWriters }) {
     const [email, setEmail] = useState('');
     const [photo, setPhoto] = useState('');
     const [datejoined, setDateJoined] = useState('');
+    const [file, setFile] = useState();
+
+    const fileSelected = event => {
+        const file = event.target.files[0];
+        setFile(file);
+    }
 
     // api calls
     const insertWriter = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-        const newWriter = { username, email, photo, datejoined };
         formData.append("username", username)
         formData.append("email", email)
-        formData.append("photo", photo)
+        formData.append("writerPhoto", file)
         formData.append("datejoined", datejoined)
 
-        console.log(photo)
-
-        const response = await fetch('http://localhost:3000/writers', {
+        const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {
             method: 'POST',
             mode: 'cors',
             body: formData
@@ -79,8 +82,7 @@ function InsertWriter({ setWriters }) {
                             name="writerPhoto"
                             id="writer-photo"
                             accept="image/*"
-                            value={photo}
-                            onChange={e => setPhoto(e.target.value[0])}>
+                            onChange={fileSelected}>
                         </input>
                     </div>
                     <div className='input-group'>

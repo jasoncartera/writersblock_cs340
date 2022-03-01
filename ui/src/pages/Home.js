@@ -12,7 +12,6 @@ function Home(){
     const getWriters = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/writers');
         const writers = await response.json();
-        writers.sort((a, b) => (a.Id > b.Id ? 1: -1));
         setWriters(writers);
     }
 
