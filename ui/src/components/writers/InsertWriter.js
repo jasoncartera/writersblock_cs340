@@ -15,7 +15,6 @@ function InsertWriter({ setWriters }) {
     // input state
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [photo, setPhoto] = useState('');
     const [datejoined, setDateJoined] = useState('');
     const [file, setFile] = useState();
 
@@ -51,7 +50,7 @@ function InsertWriter({ setWriters }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
-            setPhoto('');
+            setFile('');
         }
 
     };
@@ -86,7 +85,7 @@ function InsertWriter({ setWriters }) {
                             name="writerPhoto"
                             id="writer-photo"
                             accept="image/*"
-                            value={photo}
+                            value={file}
                             onChange={fileSelected}>
                         </input>
                     </div>
