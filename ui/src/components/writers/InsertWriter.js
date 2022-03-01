@@ -17,14 +17,18 @@ function InsertWriter({ setWriters }) {
     // api calls
     const insertWriter = async (event) => {
         event.preventDefault();
+        const formData = new FormData();
         const newWriter = { username, email, photo, datejoined };
+        formData.append("username", username)
+        formData.append("email", email)
+        formData.append("photo", photo)
+        formData.append("datejoined", datejoined)
+
+        console.log(formData);
         const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify(newWriter),
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
+            body: formData,
         });
 
         // successful insert
@@ -33,7 +37,6 @@ function InsertWriter({ setWriters }) {
             // re-render table
             const response = await fetch(' https://writers-block-serve.herokuapp.com/writers');
             const writers = await response.json();
-            console.log(writers);
             setWriters(writers);
 
             // clear input values
@@ -42,12 +45,13 @@ function InsertWriter({ setWriters }) {
             setPhoto('');
             setDateJoined('');
         }
+
     };
 
 
     return (
         <div className="insert-form" id="add-writer-form">
-            <form onSubmit={insertWriter} method="post" encType="multipart/form-data">
+            <form onSubmit={insertWriter} encType="multipart/form-data">
                 <div className='formContents'>
                     <p>Insert New Writer</p>
                     <div className='input-group'>
@@ -69,9 +73,9 @@ function InsertWriter({ setWriters }) {
                         </input>
                     </div>
                     <div className='input-group'>
-                        <label htmlFor="writer-photo">Upload photo:</label>
+                        <label htmlFor="writerPhoto">Upload photo:</label>
                         <input type="file"
-                            name="writer-photo"
+                            name="writerPhoto"
                             id="writer-photo"
                             accept="image/*"
                             value={photo}

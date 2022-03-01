@@ -101,7 +101,7 @@ router.get('/writers/:username', async (req, res) => {
 });
 
 /* Create Writer */
-router.post('/writers', upload.single('writer-photo'), async (req, res) => {
+router.post('/writers', upload.single('photo'), async (req, res) => {
     try {
         var image = req.file;
         if (image === undefined) {
@@ -111,7 +111,7 @@ router.post('/writers', upload.single('writer-photo'), async (req, res) => {
         }
         const values = [req.body.writerUsername, req.body.writerEmail, image, req.body.writerDateJoined];
         const result = await createWriter(values);
-        res.status(200).json(result);
+        res.status(200).send(result);
     } catch (err) {
         console.log(err);
         res.status(500).json({ Error: err.message });
