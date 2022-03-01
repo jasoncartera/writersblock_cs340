@@ -18,14 +18,12 @@ function Home(){
     const getReaders = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/readers');
         const readers = await response.json();
-        readers.sort((a, b) => (a.Id > b.Id ? 1: -1));
         setReaders(readers);
     }
 
     const getPosts = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/posts');
         const posts = await response.json();
-        posts.sort((a, b) => (a.Id > b.Id ? 1: -1));
         setPosts(posts);
     }
         
