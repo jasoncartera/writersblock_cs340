@@ -102,6 +102,7 @@ router.get('/writers/:username', async (req, res) => {
 
 /* Create Writer */
 router.post('/writers', upload.single('photo'), async (req, res) => {
+    console.log(req.file);
     try {
         var image = req.file;
         if (image === undefined) {
@@ -109,7 +110,7 @@ router.post('/writers', upload.single('photo'), async (req, res) => {
         } else {
             image = image.path;
         }
-        const values = [req.body.writerUsername, req.body.writerEmail, image, req.body.writerDateJoined];
+        const values = [req.body.username, req.body.email, image, req.body.datejoined];
         const result = await createWriter(values);
         res.status(200).send(result);
     } catch (err) {

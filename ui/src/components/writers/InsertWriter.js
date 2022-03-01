@@ -24,11 +24,12 @@ function InsertWriter({ setWriters }) {
         formData.append("photo", photo)
         formData.append("datejoined", datejoined)
 
-        console.log(formData);
-        const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {
+        console.log(photo)
+
+        const response = await fetch('http://localhost:3000/writers', {
             method: 'POST',
             mode: 'cors',
-            body: formData,
+            body: formData
         });
 
         // successful insert
@@ -79,7 +80,7 @@ function InsertWriter({ setWriters }) {
                             id="writer-photo"
                             accept="image/*"
                             value={photo}
-                            onChange={e => setPhoto(e.target.value)}>
+                            onChange={e => setPhoto(e.target.value[0])}>
                         </input>
                     </div>
                     <div className='input-group'>
