@@ -2,6 +2,10 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
+import multer from 'multer';
+
+const upload = multer({ dest: './uploads/' });
+
 const router = express.Router();
 
 router.use(express.json());
@@ -106,9 +110,15 @@ router.get('/posts/:username', async (req, res) => {
 });
 
 /* Create a post */
-router.post('/posts', async (req, res) => {
+router.post('/posts', upload.single('postPhoto'), async (req, res) => {
     try {
-        const values = [req.body.writerId, req.body.content, req.body.photo, req.body.posted];
+        let image = req.file;
+        if (image === undefined) {
+            image = null;
+        } else {
+            image = image.path;
+        }
+        const values = [req.body.writerId, req.body.content, image, req.body.posted];
         const result = await createPost(values);
         res.status(200).json(result);
     } catch (err) {

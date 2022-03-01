@@ -24,10 +24,10 @@ function InsertWriter({ setWriters }) {
     const insertWriter = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append("username", username)
-        formData.append("email", email)
-        formData.append("writerPhoto", file)
-        formData.append("datejoined", datejoined)
+        formData.append("username", username);
+        formData.append("email", email);
+        formData.append("writerPhoto", file);
+        formData.append("datejoined", datejoined);
 
         const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {
             method: 'POST',
@@ -46,8 +46,8 @@ function InsertWriter({ setWriters }) {
             // clear input values
             setUsername('');
             setEmail('');
-            setPhoto('');
             setDateJoined('');
+            setPhoto('');
         }
 
     };
@@ -82,6 +82,7 @@ function InsertWriter({ setWriters }) {
                             name="writerPhoto"
                             id="writer-photo"
                             accept="image/*"
+                            value={photo}
                             onChange={fileSelected}>
                         </input>
                     </div>

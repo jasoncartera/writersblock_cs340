@@ -2,6 +2,9 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
+import multer from 'multer';
+
+const upload = multer({ dest: './uploads/' });
 const router = express.Router();
 
 router.use(express.json());
@@ -97,9 +100,15 @@ router.get('/readers/:username', async (req, res) => {
 });
 
 /* Create reader */
-router.post('/readers', async (req, res) => {
+router.post('/readers', upload.single('readerPhoto'), async (req, res) => {
     try {
-        const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
+        let image = req.file
+        if (image === undefined) {
+            image = null;
+        } else {
+            image = image.path;
+        }
+        const values = [req.body.username, req.body.email, image, req.body.datejoined];
         const result = await createReader(values);
         res.status(200).json(result);
     } catch (err) {
@@ -113,7 +122,6 @@ router.put('/readers/:_id', async (req, res) => {
     try {
         const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
         const result = await updateReader(req.params._id, values);
-        console.log(result);
         res.status(200).json(result);
     } catch (err) {
         console.log(err);

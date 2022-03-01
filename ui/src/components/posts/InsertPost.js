@@ -18,21 +18,30 @@ function InsertPost({ setPosts, writers }) {
     const [photo, setPhoto] = useState('');
     const [posted, setPosted] = useState('');
     const [content, setContent] = useState('');
+    const [file, setFile] = useState();
+
+    const fileSelected = event => {
+        const file = event.target.files[0];
+        setFile(file);
+    }
 
     // api calls
-    const insertPost = async () => {
-        const newPost = { writerId, content, photo, posted };
+    const insertPost = async (event) => {
+        event.preventDefault();
+        const formData = new FormData()
+        formData.append("writerId", writerId)
+        formData.append("postPhoto", file)
+        formData.append("posted", posted)
+        formData.append("content", content)
+
         const response = await fetch('https://writers-block-serve.herokuapp.com/posts', {
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify(newPost),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            body: formData
         });
 
         // successful insert
-        if(response.status === 200){
+        if (response.status === 200) {
 
             // re-render table
             const response = await fetch(' https://writers-block-serve.herokuapp.com/posts');
@@ -49,52 +58,54 @@ function InsertPost({ setPosts, writers }) {
 
     return (
         <div className="insert-form" id="add-post-form">
-            <div className='formContents'>
-                <p>Insert New Post</p>
+            <form onSubmit={insertPost} encType="multipart/form-data">
+                <div className='formContents'>
+                    <p>Insert New Post</p>
                     <div className='input-group'>
                         <label htmlFor="post-writerid">Writer:</label>
-                        <select type="number" 
-                                name="post-writerid" 
-                                id="post-writerid" 
-                                value={writerId}
-                                onChange={e => setWriterId(e.target.value)}>
+                        <select type="number"
+                            name="post-writerid"
+                            id="post-writerid"
+                            value={writerId}
+                            onChange={e => setWriterId(e.target.value)}>
                             <option value="">Select a Writer</option>
                             {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                         </select>
                     </div>
-                            
+
                     <div className='input-group'>
-                        <label htmlFor="post-photo">Upload photo:</label>
-                        <input  type="file" 
-                                name="post-photo" 
-                                id="post-photo"
-                                value={photo}
-                                onChange={e => setPhoto(e.target.value)}>
+                        <label htmlFor="postPhoto">Upload photo:</label>
+                        <input type="file"
+                            name="postPhoto"
+                            id="post-photo"
+                            value={photo}
+                            onChange={fileSelected}>
                         </input>
                     </div>
-                            
+
                     <div className='input-group'>
                         <label htmlFor="post-date">Post Date:</label>
-                        <input  type="date" 
-                                name="post-date" 
-                                id="post-date"
-                                value={posted}
-                                onChange={e => setPosted(e.target.value)}>
+                        <input type="date"
+                            name="post-date"
+                            id="post-date"
+                            value={posted}
+                            onChange={e => setPosted(e.target.value)}>
                         </input>
-                    </div>  
-                     
+                    </div>
+
                     <div className='input-group'>
                         <label htmlFor="post-content">Content:</label>
-                        <textarea   name="post-content" 
-                                    id="post-content" 
-                                    rows="4" 
-                                    cols="30"
-                                    value={content}
-                                    onChange={e => setContent(e.target.value)}>
+                        <textarea name="post-content"
+                            id="post-content"
+                            rows="4"
+                            cols="30"
+                            value={content}
+                            onChange={e => setContent(e.target.value)}>
                         </textarea>
                     </div>
-                <button type="submit" onClick={insertPost}>SUBMIT</button>
-            </div>
+                    <button type="submit" onClick={insertPost}>SUBMIT</button>
+                </div>
+            </form>
         </div>
     );
 }
