@@ -11,8 +11,7 @@ function InsertReader({ setReaders }) {
     // input state
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [photo, setPhoto] = useState('');
-    const [file, setFile] = useState();
+    const [file, setFile] = useState(null);
     const [datejoined, setDateJoined] = useState('');
 
     const fileSelected = event => {
@@ -46,7 +45,6 @@ function InsertReader({ setReaders }) {
             // clear input values
             setUsername('');
             setEmail('');
-            setPhoto('');
             setDateJoined('');
 
         }

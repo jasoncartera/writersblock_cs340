@@ -50,7 +50,6 @@ function InsertWriter({ setWriters }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
-            setFile('');
         }
 
     };
@@ -85,7 +84,6 @@ function InsertWriter({ setWriters }) {
                             name="writerPhoto"
                             id="writer-photo"
                             accept="image/*"
-                            value={file}
                             onChange={fileSelected}>
                         </input>
                     </div>

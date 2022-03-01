@@ -15,7 +15,6 @@ function InsertPost({ setPosts, writers }) {
 
     // input state
     const [writerId, setWriterId] = useState('');
-    const [photo, setPhoto] = useState('');
     const [posted, setPosted] = useState('');
     const [content, setContent] = useState('');
     const [file, setFile] = useState();
@@ -50,7 +49,6 @@ function InsertPost({ setPosts, writers }) {
 
             // clear input values
             setWriterId('');
-            setPhoto('');
             setPosted('');
             setContent('');
         }
@@ -78,7 +76,6 @@ function InsertPost({ setPosts, writers }) {
                         <input type="file"
                             name="postPhoto"
                             id="post-photo"
-                            value={photo}
                             onChange={fileSelected}>
                         </input>
                     </div>
