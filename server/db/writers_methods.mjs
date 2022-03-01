@@ -2,9 +2,11 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
-import multer from 'multer';
+import {uploadImg} from '../file_upload.mjs';
 
-const upload = multer({ dest: './uploads/' });
+//const upload = multer({ dest: './uploads/' });
+
+const upload = uploadImg;
 
 const router = express.Router();
 
@@ -107,6 +109,7 @@ router.get('/writers/:username', async (req, res) => {
 /* Create Writer */
 router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
     try {
+        console.log(req.file);
         let image = req.file;
         if (image === undefined) {
             image = null;
