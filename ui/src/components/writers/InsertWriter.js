@@ -7,27 +7,36 @@ Adapted from: R.Byrd Portfolio Project, OSU CS290 F'21
 Code available upon request.
 */
 function InsertWriter({ setWriters }) {
-
+    
     // input state
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [photo, setPhoto] = useState('');
     const [datejoined, setDateJoined] = useState('');
+    const [file, setFile] = useState();
+
+    const fileSelected = event => {
+        const file = event.target.files[0];
+        setFile(file);
+    }
 
     // api calls
-    const insertWriter = async () => {
-        const newWriter = { username, email, photo, datejoined };
+    const insertWriter = async (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+        formData.append("username", username)
+        formData.append("email", email)
+        formData.append("writerPhoto", file)
+        formData.append("datejoined", datejoined)
+
         const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify(newWriter),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            body: formData
         });
 
         // successful insert
-        if(response.status === 200){
+        if (response.status === 200) {
 
             // re-render table
             const response = await fetch(' https://writers-block-serve.herokuapp.com/writers');
@@ -39,52 +48,55 @@ function InsertWriter({ setWriters }) {
             setEmail('');
             setPhoto('');
             setDateJoined('');
-
         }
+
     };
+
 
     return (
         <div className="insert-form" id="add-writer-form">
-            <div className='formContents'>
-                <p>Insert New Writer</p>
-                <div className='input-group'>
-                    <label htmlFor="writer-username">Username:</label>
-                    <input  type="text" 
-                            name="writer-username" 
+            <form onSubmit={insertWriter} encType="multipart/form-data">
+                <div className='formContents'>
+                    <p>Insert New Writer</p>
+                    <div className='input-group'>
+                        <label htmlFor="writerUsername">Username:</label>
+                        <input type="text"
+                            name="writerUsername"
                             id="writer-username"
                             value={username}
                             onChange={e => setUsername(e.target.value)}>
-                    </input>
-                </div>
-                <div className='input-group'>
-                    <label htmlFor="writer-email">Email:</label>
-                    <input  type="text" 
-                            name="writer-email" 
+                        </input>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="writerEmail">Email:</label>
+                        <input type="text"
+                            name="writerEmail"
                             id="writer-email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}>
-                    </input>
-                </div>
-                <div className='input-group'>
-                    <label htmlFor="writer-photo">Upload photo:</label>
-                    <input  type="file" 
-                            name="writer-photo" 
+                        </input>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="writerPhoto">Upload photo:</label>
+                        <input type="file"
+                            name="writerPhoto"
                             id="writer-photo"
-                            value={photo}
-                            onChange={e => setPhoto(e.target.value)}>
-                    </input>
-                </div>
-                <div className='input-group'>
-                    <label htmlFor="writer-date-joined">Date Joined:</label>
-                    <input  type="date" 
-                            name="writer-date-joined" 
+                            accept="image/*"
+                            onChange={fileSelected}>
+                        </input>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="writerDateJoined">Date Joined:</label>
+                        <input type="date"
+                            name="writerDateJoined"
                             id="writer-date-joined"
                             value={datejoined}
                             onChange={e => setDateJoined(e.target.value)}>
-                    </input>
+                        </input>
+                    </div>
+                    <button type="submit">SUBMIT</button>
                 </div>
-                <button type="submit" onClick={insertWriter}>SUBMIT</button>
-            </div>
+            </form>
         </div>
     );
 }
