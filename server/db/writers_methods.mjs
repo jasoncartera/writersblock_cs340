@@ -19,6 +19,10 @@ router.use(express.json());
 
     Adapted from: Mithun Satheesh answer on Stack Overflow
     Sourece URL: https://stackoverflow.com/questions/18642828/origin-origin-is-not-allowed-by-access-control-allow-origin
+
+    Citation for file upload:
+    Date: 2/28/2022
+    https://www.youtube.com/watch?v=NZElg91l_ms&ab_channel=SamMeech-Ward
 */
 router.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
