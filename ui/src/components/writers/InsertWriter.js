@@ -5,6 +5,10 @@ Citation for the following function:
 Date: 2/27/2022
 Adapted from: R.Byrd Portfolio Project, OSU CS290 F'21
 Code available upon request.
+
+Citation for file upload:
+Date: 2/28/2022
+https://www.youtube.com/watch?v=NZElg91l_ms&ab_channel=SamMeech-Ward
 */
 function InsertWriter({ setWriters }) {
     
