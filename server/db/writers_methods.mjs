@@ -2,8 +2,8 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
-
 import multer from 'multer';
+
 const upload = multer({ dest: './uploads/' });
 
 const router = express.Router();
@@ -103,7 +103,7 @@ router.get('/writers/:username', async (req, res) => {
 /* Create Writer */
 router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
     try {
-        var image = req.file;
+        let image = req.file;
         if (image === undefined) {
             image = null;
         } else {
@@ -111,7 +111,7 @@ router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
         }
         const values = [req.body.username, req.body.email, image, req.body.datejoined];
         const result = await createWriter(values);
-        res.status(200).send(result);
+        res.status(200).json(result);
     } catch (err) {
         console.log(err);
         res.status(500).json({ Error: err.message });
