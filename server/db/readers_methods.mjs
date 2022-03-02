@@ -3,6 +3,11 @@
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
 import {uploadImg} from '../file_upload.mjs';
+import { uploadFile } from '../s3.mjs';
+import fs from 'fs';
+import util from 'util';
+
+const unlinkFile = util.promisify(fs.unlink);
 
 const upload = uploadImg;
 const router = express.Router();
@@ -107,8 +112,13 @@ router.post('/readers', upload.single('readerPhoto'), async (req, res) => {
             image = null;
         } else {
             image = image.path;
+            const uploadImg = await uploadFile(req.file);
+            console.log("S3 response:", uploadImg);
+            image = uploadImg;
+            await unlinkFile(req.file.path);
         }
-        const values = [req.body.username, req.body.email, image, req.body.datejoined];
+
+        const values = [req.body.username, req.body.email, image.key, req.body.datejoined];
         const result = await createReader(values);
         res.status(200).json(result);
     } catch (err) {

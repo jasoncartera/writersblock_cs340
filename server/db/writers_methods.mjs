@@ -2,7 +2,13 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
-import {uploadImg} from '../file_upload.mjs';
+import { uploadImg } from '../file_upload.mjs';
+import { uploadFile } from '../s3.mjs';
+import fs from 'fs';
+import util from 'util';
+
+// Citation: https://javascript.plainenglish.io/file-upload-to-amazon-s3-using-node-js-42757c6a39e9
+const unlinkFile = util.promisify(fs.unlink);
 
 const upload = uploadImg;
 const router = express.Router();
@@ -106,14 +112,20 @@ router.get('/writers/:username', async (req, res) => {
 /* Create Writer */
 router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
     try {
-        console.log(req.file);
         let image = req.file;
         if (image === undefined) {
             image = null;
         } else {
-            image = image.path;
+            // Uploads to S3
+            // Citation: https://javascript.plainenglish.io/file-upload-to-amazon-s3-using-node-js-42757c6a39e9
+            const uploadImg = await uploadFile(req.file);
+            image = uploadImg
+            console.log("S3 response:", uploadImg);
+            // Deletes from local 'uploads' folder
+            await unlinkFile(req.file.path);
         }
-        const values = [req.body.username, req.body.email, image, req.body.datejoined];
+        
+        const values = [req.body.username, req.body.email, image.key, req.body.datejoined];
         const result = await createWriter(values);
         res.status(200).json(result);
     } catch (err) {
