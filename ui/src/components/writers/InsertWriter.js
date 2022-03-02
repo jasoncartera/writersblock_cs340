@@ -32,7 +32,7 @@ function InsertWriter({ setWriters }) {
         formData.append("writerPhoto", file);
         formData.append("datejoined", datejoined);
 
-        const response = await fetch('https://writers-block-serve.herokuapp.com/writers', {
+        const response = await fetch('http://localhost:3000/writers', {
             method: 'POST',
             mode: 'cors',
             body: formData
