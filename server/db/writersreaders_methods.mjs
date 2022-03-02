@@ -150,7 +150,7 @@ router.delete('/writersreaders/:_id', async (req, res) => {
         if (result.affectedRows == 0) {
             res.status(404).json({Error: "Relationship not found"});
         } else {
-            res.status(200).json(result);
+            res.status(204).json(result);
         }
     } catch (err) {
         console.log(err);
@@ -165,7 +165,7 @@ router.delete('/writersreaders/', async (req, res) => {
         if (result.affectedRows == 0) {
             res.status(404).json({Error: "Relationship not found"});
         } else {
-            res.status(200).json(result);
+            res.status(204).json(result);
         }
     } catch (err) {
         console.log(err);

@@ -113,19 +113,21 @@ router.get('/writers/:username', async (req, res) => {
 router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
     try {
         let image = req.file;
+        let imageKey = null
         if (image === undefined) {
-            image = null;
+            console.log("no image");
         } else {
             // Uploads to S3
             // Citation: https://javascript.plainenglish.io/file-upload-to-amazon-s3-using-node-js-42757c6a39e9
             const uploadImg = await uploadFile(req.file);
             image = uploadImg
+            imageKey = image.key
             console.log("S3 response:", uploadImg);
             // Deletes from local 'uploads' folder
             await unlinkFile(req.file.path);
         }
         
-        const values = [req.body.username, req.body.email, image.key, req.body.datejoined];
+        const values = [req.body.username, req.body.email, imageKey, req.body.datejoined];
         const result = await createWriter(values);
         res.status(200).json(result);
     } catch (err) {
@@ -151,10 +153,11 @@ router.put('/writers/:_id', async (req, res) => {
 router.delete('/writers/:_id', async (req, res) => {
     try {
         const result = await deleteWriter(req.params._id);
+        console.log(result);
         if (result.affectedRows == 0) {
             res.status(404).json({ Error: "User not found" });
         } else {
-            res.status(200).json(result);
+            res.status(204).json(result);
         }
     } catch (err) {
         console.log(err);

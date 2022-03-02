@@ -30,7 +30,7 @@ function Comments() {
 
             <div className="page-body">
                 <div className="list">
-                    <CommentList comments={comments} />
+                    <CommentList comments={comments} setComments={setComments} />
                 </div>
                 <div className='dbms-components'>
                 <div className="search">

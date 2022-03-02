@@ -18,7 +18,7 @@ function Posts() {
             </div>
             <div className="page-body">
                 <div className="list">
-                    <PostList posts={posts}/>
+                    <PostList posts={posts} />
                 </div>
 
                 <div className='dbms-components'>

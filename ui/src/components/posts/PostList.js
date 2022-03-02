@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from './Post';
+import { useOutletContext } from "react-router-dom";
 
 
 /* 
@@ -10,6 +11,24 @@ How table is broken up into components is Adapted from:
 Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
 */
 function PostList({ posts }) {
+
+    const context = useOutletContext();
+    let setPosts = context.post[1]
+
+    const onDelete = async id => {
+        
+        const response = await fetch(`https://writers-block-serve.herokuapp.com/posts/${id}`, {method: 'DELETE'});
+
+        if (response.status === 204) {
+            // re-render table
+            const response = await fetch('https://writers-block-serve.herokuapp.com/posts');
+            const posts = await response.json();
+            setPosts(posts);
+        } else {
+            console.error(`Failed to delete the post with id ${id}, status code ${response.status}`);
+        }
+    }
+    
     posts.sort((a, b) => (a.Id > b.Id ? 1: -1));
     
     return (
@@ -28,7 +47,9 @@ function PostList({ posts }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.map((post, i) => <Post post={post} key={i} />)}
+                    {posts.map((post, i) => <Post post={post}
+                    onDelete={onDelete}
+                    key={i} />)}
                 </tbody>
             </table>
         </>

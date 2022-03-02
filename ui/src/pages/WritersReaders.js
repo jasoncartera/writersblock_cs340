@@ -32,7 +32,7 @@ function WritersReaders() {
             </div>
             <div className="page-body">
                 <div className="list">
-                    <WriterReaderList writersReaders={writersReaders}/>
+                    <WriterReaderList writersReaders={writersReaders} setWritersReaders={setWritersReaders} />
                 </div>
                 <div className='dbms-components'>
                     <div className="insert">
