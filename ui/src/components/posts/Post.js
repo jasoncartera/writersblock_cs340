@@ -1,7 +1,7 @@
 import React from 'react';
 import {MdDeleteForever, MdEdit} from 'react-icons/md'
 
-function Post({ post }) {
+function Post({ post, onDelete }) {
     return (
         <tr className="list-row">
             <td>{post.Id}</td>
@@ -10,7 +10,7 @@ function Post({ post }) {
             <td>{post.Photo}</td>
             <td>{post.Posted}</td>
             <td><MdEdit className='toggle' /></td>
-            <td><MdDeleteForever className='toggle' /></td>
+            <td><MdDeleteForever className='toggle' onClick={ () => onDelete(post.Id)} /></td>
         </tr>
     );
 }

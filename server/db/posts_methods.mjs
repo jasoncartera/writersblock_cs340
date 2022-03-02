@@ -117,16 +117,18 @@ router.get('/posts/:username', async (req, res) => {
 router.post('/posts', upload.single('postPhoto'), async (req, res) => {
     try {
         let image = req.file;
+        let imageKey = null;
         if (image === undefined) {
-            image = null;
+            console.log("no photo");
         } else {
             const uploadImg = await uploadFile(req.file);
-            console.log("S3 response:", uploadImg);
             image = uploadImg;
+            imageKey = image.key;
             await unlinkFile(req.file.path);
+            console.log("S3 response:", uploadImg);
         }
         
-        const values = [req.body.writerId, req.body.content, image.key, req.body.posted];
+        const values = [req.body.writerId, req.body.content, imageKey, req.body.posted];
         const result = await createPost(values);
         res.status(200).json(result);
     } catch (err) {
@@ -155,7 +157,7 @@ router.delete('/posts/:_id', async (req, res) => {
         if (result.affectedRows == 0) {
             res.status(404).json({Error: "Post not found"});
         } else {
-            res.status(200).json(result);
+            res.status(204).json(result);
         }
     } catch (err) {
         console.log(err);

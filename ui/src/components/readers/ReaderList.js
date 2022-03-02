@@ -1,5 +1,6 @@
 import React from 'react';
 import Reader from './Reader';
+import { useOutletContext } from "react-router-dom";
 
 
 /* 
@@ -10,6 +11,23 @@ How table is broken up into components is Adapted from:
 Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
 */
 function ReaderList({ readers }) {
+    const context = useOutletContext();
+    let setReaders = context.read[1]
+
+    const onDelete = async id => {
+        
+        const response = await fetch(`https://writers-block-serve.herokuapp.com/readers/${id}`, {method: 'DELETE'});
+
+        if (response.status === 204) {
+            // re-render table
+            const response = await fetch('https://writers-block-serve.herokuapp.com/readers');
+            const readers = await response.json();
+            setReaders(readers);
+        } else {
+            console.error(`Failed to delete the reader with id ${id}, status code ${response.status}`);
+        }
+    }
+
     readers.sort((a, b) => (a.Id > b.Id ? 1: -1));
     return (
         <>
@@ -27,7 +45,9 @@ function ReaderList({ readers }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {readers.map((reader, i) => <Reader reader={reader} key={i} />)}
+                    {readers.map((reader, i) => <Reader reader={reader} 
+                    onDelete={onDelete}
+                    key={i} />)}
                 </tbody>
             </table>
         </>

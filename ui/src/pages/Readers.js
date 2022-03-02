@@ -18,7 +18,7 @@ function Readers() {
             </div>
             <div className="page-body">
                 <div className="list">
-                    <ReaderList readers={readers}/>
+                    <ReaderList readers={readers} />
                 </div>
                 <div className='dbms-components'>
                     <div className="search">

@@ -108,17 +108,18 @@ router.get('/readers/:username', async (req, res) => {
 router.post('/readers', upload.single('readerPhoto'), async (req, res) => {
     try {
         let image = req.file
+        let imageKey = null;
         if (image === undefined) {
-            image = null;
+            console.log("no image")
         } else {
-            image = image.path;
             const uploadImg = await uploadFile(req.file);
-            console.log("S3 response:", uploadImg);
             image = uploadImg;
+            imageKey = image.key;
             await unlinkFile(req.file.path);
+            console.log("S3 response:", uploadImg);
         }
 
-        const values = [req.body.username, req.body.email, image.key, req.body.datejoined];
+        const values = [req.body.username, req.body.email, imageKey, req.body.datejoined];
         const result = await createReader(values);
         res.status(200).json(result);
     } catch (err) {
@@ -146,7 +147,7 @@ router.delete('/readers/:_id', async (req, res) => {
         if (result.affectedRows == 0) {
             res.status(404).json({Error: "User not found"});
         } else {
-            res.status(200).json(result);
+            res.status(204).json(result);
         }
     } catch (err) {
         console.log(err);
