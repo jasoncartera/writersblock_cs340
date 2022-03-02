@@ -39,7 +39,7 @@ function InsertReader({ setReaders }) {
         if (response.status === 200) {
 
             // re-render table
-            const response = await fetch(' https://writers-block-serve.herokuapp.com/readers');
+            const response = await fetch('https://writers-block-serve.herokuapp.com/readers');
             const readers = await response.json();
             setReaders(readers);
 
