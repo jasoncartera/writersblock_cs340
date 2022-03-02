@@ -43,7 +43,7 @@ function InsertWriter({ setWriters }) {
         if (response.status === 200) {
 
             // re-render table
-            const response = await fetch(' https://writers-block-serve.herokuapp.com/writers');
+            const response = await fetch('https://writers-block-serve.herokuapp.com/writers');
             const writers = await response.json();
             setWriters(writers);
 

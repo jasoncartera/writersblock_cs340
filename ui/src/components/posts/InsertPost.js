@@ -44,7 +44,7 @@ function InsertPost({ setPosts, writers }) {
         if (response.status === 200) {
 
             // re-render table
-            const response = await fetch(' https://writers-block-serve.herokuapp.com/posts');
+            const response = await fetch('https://writers-block-serve.herokuapp.com/posts');
             const posts = await response.json();
             setPosts(posts);
 
