@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 /* 
 Citation for the following return's use of select dropdown in React:
@@ -18,6 +18,7 @@ function InsertPost({ setPosts, writers }) {
     const [posted, setPosted] = useState('');
     const [content, setContent] = useState('');
     const [file, setFile] = useState();
+    const imgRef = useRef(null);
 
     const fileSelected = event => {
         const file = event.target.files[0];
@@ -51,6 +52,7 @@ function InsertPost({ setPosts, writers }) {
             setWriterId('');
             setPosted('');
             setContent('');
+            imgRef.current.value = null;
         }
     };
 
@@ -76,6 +78,8 @@ function InsertPost({ setPosts, writers }) {
                         <input type="file"
                             name="postPhoto"
                             id="post-photo"
+                            accept="image/*"
+                            ref={imgRef}
                             onChange={fileSelected}>
                         </input>
                     </div>

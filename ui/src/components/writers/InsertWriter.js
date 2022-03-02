@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 /*
 Citation for the following function:
@@ -17,6 +17,7 @@ function InsertWriter({ setWriters }) {
     const [email, setEmail] = useState('');
     const [datejoined, setDateJoined] = useState('');
     const [file, setFile] = useState();
+    const imgRef = useRef(null);
 
     const fileSelected = event => {
         const file = event.target.files[0];
@@ -50,6 +51,7 @@ function InsertWriter({ setWriters }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
+            imgRef.current.value = null;
         }
 
     };
@@ -84,6 +86,7 @@ function InsertWriter({ setWriters }) {
                             name="writerPhoto"
                             id="writer-photo"
                             accept="image/*"
+                            ref={imgRef}
                             onChange={fileSelected}>
                         </input>
                     </div>

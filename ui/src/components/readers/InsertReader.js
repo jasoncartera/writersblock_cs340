@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 /*
 Citation for the following function:
@@ -13,6 +13,7 @@ function InsertReader({ setReaders }) {
     const [email, setEmail] = useState('');
     const [file, setFile] = useState(null);
     const [datejoined, setDateJoined] = useState('');
+    const imgRef = useRef(null);
 
     const fileSelected = event => {
         const file = event.target.files[0];
@@ -46,7 +47,7 @@ function InsertReader({ setReaders }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
-
+            imgRef.current.value = null;
         }
     };
 
@@ -81,6 +82,8 @@ function InsertReader({ setReaders }) {
                         <input type="file"
                             name="readerPhoto"
                             id="reader-photo"
+                            accept="image/*"
+                            ref={imgRef}
                             onChange={fileSelected}>
                         </input>
                     </div>
