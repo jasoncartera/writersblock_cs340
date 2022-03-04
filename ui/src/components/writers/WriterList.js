@@ -1,6 +1,7 @@
 import React from 'react';
 import Writer from './Writer';
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext} from "react-router-dom";
+import UpdateWriter from "./UpdateWriter";
 
 
 /* 
@@ -11,7 +12,7 @@ How table is broken up into components is Adapted from:
 Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
 */
 
-function WriterList({ writers }) {
+function WriterList({ writers, setWriterToEdit }) {
 
     const context = useOutletContext();
     let setWriters = context.write[1]
@@ -28,6 +29,10 @@ function WriterList({ writers }) {
         } else {
             console.error(`Failed to delete the writer with id ${id}, status code ${response.status}`);
         }
+    }
+
+    const onEdit = writer => {
+        setWriterToEdit(writer);
     }
 
     writers.sort((a, b) => (a.Id > b.Id ? 1: -1));
@@ -49,6 +54,7 @@ function WriterList({ writers }) {
                 <tbody>
                     {writers.map((writer, i) => <Writer writer={writer}
                     onDelete={onDelete}
+                    onEdit={onEdit}
                     key={i} />)}
                 </tbody>
             </table>

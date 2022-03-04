@@ -137,9 +137,19 @@ router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
 });
 
 /* Update Writer */
-router.put('/writers/:_id', async (req, res) => {
+router.put('/writers/:_id', upload.single('updateWriterPhoto'), async (req, res) => {
     try {
-        const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
+        let imageKey = null
+        if (req.file === undefined){
+            console.log("no image")
+            imageKey = req.body.photo;
+        } else {
+            const uploadImg = await uploadFile(req.file);
+            imageKey = uploadImg.key;
+            console.log("S3 response:", uploadImg);
+            await unlinkFile(req.file.path);
+        }
+        const values = [req.body.username, req.body.email, imageKey, req.body.datejoined];
         const result = await updateWriter(req.params._id, values);
         console.log(result);
         res.status(200).json(result);
