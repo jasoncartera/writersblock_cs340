@@ -1,7 +1,6 @@
 import React from 'react';
 import Writer from './Writer';
 import { useOutletContext} from "react-router-dom";
-import UpdateWriter from "./UpdateWriter";
 
 
 /* 

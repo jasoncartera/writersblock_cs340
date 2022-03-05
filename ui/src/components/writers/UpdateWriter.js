@@ -3,20 +3,22 @@ import React, { useState, useRef, useEffect } from 'react';
 function UpdateWriter({ setWriters, writerToEdit }) {
 
 
-    const [id, setId] = useState(writerToEdit.Id);
+    const [id, setId] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [datejoined, setDateJoined] = useState('');
-    const [file, setFile] = useState();
-    const imgRef = useRef(writerToEdit.Photo);
+    const [photo, setPhoto] = useState('');
+    const [file, setFile] = useState(null);
+    const imgRef = useRef(null);
 
     useEffect(() => {
         setId(writerToEdit.Id);
         setUsername(writerToEdit.Username);
         setEmail(writerToEdit.Email);
-        setDateJoined(writerToEdit.DateJoined);
-    })
-
+        setDateJoined(writerToEdit.DateJoined ? writerToEdit.DateJoined.split("T")[0] : '');
+        setPhoto(writerToEdit.Photo);
+    }, [writerToEdit])
+        
     const fileSelected = event => {
         const file = event.target.files[0];
         setFile(file);
@@ -30,12 +32,12 @@ function UpdateWriter({ setWriters, writerToEdit }) {
         formData.append("email", email);
         formData.append("datejoined", datejoined);
         if (file) {
-            formData.append("writerPhoto", file);
+            formData.append("updateWriterPhoto", file);
         } else {
-            formData.append("photo", writerToEdit.Photo);
+            formData.append("photo", photo ? photo: "");
         }
 
-        const response = await fetch(`http://localhost:3000/writers/${writerToEdit.Id}`, {
+        const response = await fetch(`https://writers-block-serve.herokuapp.com/writers/${id}`, {
             method: 'PUT',
             mode: 'cors',
             body: formData
@@ -54,7 +56,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
-            imgRef.current.value = '';
+            imgRef.current.value = null;
         }
 
     };
@@ -96,6 +98,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                         <input type="file"
                             name="updateWriterPhoto"
                             id="writer-update-photo"
+                            accept="image/*"
                             ref={imgRef}
                             onChange={fileSelected}>
                         </input>
@@ -104,7 +107,9 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                         <label htmlFor="writerDateJoined">Date Joined:</label>
                         <input type="date"
                             name="writerDateJoined"
-                            id="writer-update-date-joined">
+                            id="writer-update-date-joined"
+                            value={datejoined}
+                            onChange={(e) => {setDateJoined(e.target.value)}}>
                         </input>
                     </div>
                     <button type="submit" className="update-button">UPDATE</button>
