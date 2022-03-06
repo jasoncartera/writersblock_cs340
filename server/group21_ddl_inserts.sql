@@ -83,13 +83,13 @@ VALUES
 INSERT INTO Comments (ReaderId, PostId, Content, Posted)
 VALUES
 ((SELECT Id FROM Readers WHERE Username='John'), 4, 'Test comment reader 1 to post 1', curdate()),
-((SELECT Id From Readers WHERE Username='John'), 8, 'Test comment reader 1 to post 2', curdate()),
+((SELECT Id From Readers WHERE Username='John'), 14, 'Test comment reader 1 to post 2', curdate()),
 ((SELECT Id FROM Readers WHERE Username='Mufasa'), 4, 'Test comment reader 2 to post 1', curdate()),
-((SELECT Id FROM Readers WHERE Username='Elyse'), 12, 'Test comment reader 2 to post 2', curdate());
+((SELECT Id FROM Readers WHERE Username='Elyse'), 24, 'Test comment reader 2 to post 2', curdate());
 
 -- Insert to WritersReaders
 INSERT INTO WritersReaders (ReaderId, WriterId)
 VALUES
-(4, 8),
+(4, 14),
 (4, 4),
-(12, 8);
+(24, 14);
