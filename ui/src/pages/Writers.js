@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import InsertWriter from "../components/writers/InsertWriter";
 import WriterList from "../components/writers/WriterList";
 import { useOutletContext } from "react-router-dom";
@@ -10,6 +10,8 @@ function Writers() {
     const context = useOutletContext();
     const [writers, setWriters] = context.write;
 
+    const [writerToEdit, setWriterToEdit] = useState({});
+
     return (
     <>
         <div className="title">
@@ -17,7 +19,7 @@ function Writers() {
         </div>
         <div className="page-body">
             <div className="list">
-                <WriterList writers={writers} />
+                <WriterList writers={writers} setWriterToEdit={setWriterToEdit} />
             </div>
             <div className='dbms-components'>
                 <div className="search">
@@ -27,7 +29,7 @@ function Writers() {
                     <InsertWriter setWriters={setWriters} />
                 </div>
                 <div className="update">
-                    <UpdateWriter setWriters={setWriters}/>
+                    <UpdateWriter setWriters={setWriters} writerToEdit={writerToEdit} />
                 </div>
             </div>
         </div>

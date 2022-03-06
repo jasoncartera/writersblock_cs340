@@ -1,7 +1,7 @@
 import React from 'react';
 import {MdDeleteForever, MdEdit} from 'react-icons/md'
 
-function Reader({ reader, onDelete }) {
+function Reader({ reader, onDelete, onEdit }) {
     return (
         <tr className="list-row">
             <td>{reader.Id}</td>
@@ -9,7 +9,7 @@ function Reader({ reader, onDelete }) {
             <td>{reader.Email}</td>
             <td>{reader.Photo}</td>
             <td>{reader.DateJoined}</td>
-            <td><MdEdit className='toggle' /></td>
+            <td><MdEdit className='toggle' onClick={ () => onEdit( reader )} /></td>
             <td><MdDeleteForever className='toggle' onClick={ () => onDelete(reader.Id)} /></td>
         </tr>
     );

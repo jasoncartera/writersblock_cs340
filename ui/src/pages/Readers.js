@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import InsertReader from '../components/readers/InsertReader';
 import ReaderList from '../components/readers/ReaderList';
 import { useOutletContext } from "react-router-dom";
@@ -11,6 +11,8 @@ function Readers() {
     const context = useOutletContext();
     const [readers, setReaders] = context.read;
 
+    const [readerToEdit, setReaderToEdit] = useState({});
+
     return (
         <>
             <div className="title">
@@ -18,7 +20,7 @@ function Readers() {
             </div>
             <div className="page-body">
                 <div className="list">
-                    <ReaderList readers={readers} />
+                    <ReaderList readers={readers} setReaderToEdit={setReaderToEdit}/>
                 </div>
                 <div className='dbms-components'>
                     <div className="search">
@@ -28,7 +30,7 @@ function Readers() {
                         <InsertReader setReaders={setReaders}/>
                     </div>
                     <div className="update">
-                        <UpdateReader setReaders={setReaders}/>
+                        <UpdateReader setReaders={setReaders} readerToEdit={readerToEdit}/>
                     </div>
                 </div>
             </div>

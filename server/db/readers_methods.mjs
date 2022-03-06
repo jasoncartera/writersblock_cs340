@@ -2,7 +2,7 @@
 
 import { dbQuery, db } from './connection.mjs'
 import express from 'express';
-import {uploadImg} from '../file_upload.mjs';
+import { uploadImg } from '../file_upload.mjs';
 import { uploadFile } from '../s3.mjs';
 import fs from 'fs';
 import util from 'util';
@@ -24,7 +24,7 @@ router.use(express.json());
     Adapted from: Mithun Satheesh answer on Stack Overflow
     Sourece URL: https://stackoverflow.com/questions/18642828/origin-origin-is-not-allowed-by-access-control-allow-origin
 */
-router.use(function(req, res, next) {
+router.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
@@ -45,7 +45,7 @@ const createReader = async (values) => {
 /* Retrieve a reader
 NOTE: NEED TO DECIDE ON PARAM TO SEARCH BY*/
 const selectOneReader = async (username) => {
-    const selectOneReaderQuery = `SELECT * FROM Readers WHERE Username=`+db.escape(username);
+    const selectOneReaderQuery = `SELECT * FROM Readers WHERE Username=` + db.escape(username);
     const result = await dbQuery(selectOneReaderQuery);
     return result;
 };
@@ -60,14 +60,14 @@ const selectAllReaders = async () => {
 /* Update a reader 
 NOTE: NEED TO SEND ALL VALUES TO SERVER FROM UI EVEN IF ONLY UPDATING ONE */
 const updateReader = async (_id, values) => {
-    const updateReaderQuery = `UPDATE Readers SET Username=?, Email=?, Photo=?, DateJoined=? WHERE Id=` +db.escape(_id);
+    const updateReaderQuery = `UPDATE Readers SET Username=?, Email=?, Photo=?, DateJoined=? WHERE Id=` + db.escape(_id);
     const result = await dbQuery(updateReaderQuery, values);
     return result;
 };
 
 /* Delete a reader by Id*/
 const deleteReader = async (_id) => {
-    const deleteReaderQuery = `DELETE FROM Readers WHERE id=`+db.escape(_id);
+    const deleteReaderQuery = `DELETE FROM Readers WHERE id=` + db.escape(_id);
     const result = await dbQuery(deleteReaderQuery);
     return result;
 };
@@ -83,10 +83,10 @@ router.get('/readers', async (req, res) => {
         const data = await selectAllReaders();
         // Send json response
         res.status(200).json(data);
-      } catch (err) {
+    } catch (err) {
         console.log(err);
-        res.status(500).json({Error: err.message});
-      }
+        res.status(500).json({ Error: err.message });
+    }
 });
 
 /* Get a reader by username */
@@ -94,13 +94,13 @@ router.get('/readers/:username', async (req, res) => {
     try {
         const result = await selectOneReader(req.params.username);
         if (result.length == 0) {
-            res.status(404).json({Error: "User not found"});
+            res.status(404).json({ Error: "User not found" });
         } else {
             res.status(200).json(result);
         }
     } catch (err) {
         console.log(err);
-        res.status(500).json({Error: err.message});
+        res.status(500).json({ Error: err.message });
     }
 });
 
@@ -124,19 +124,31 @@ router.post('/readers', upload.single('readerPhoto'), async (req, res) => {
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.status(500).json({Error: err.message});
+        res.status(500).json({ Error: err.message });
     }
 });
 
 /* Update reader by id */
-router.put('/readers/:_id', async (req, res) => {
+router.put('/readers/:_id', upload.single("updateReaderPhoto"), async (req, res) => {
     try {
-        const values = [req.body.username, req.body.email, req.body.photo, req.body.datejoined];
+        let image = req.file;
+        let imageKey = null;
+        if (image === undefined) {
+            console.log("no image");
+            imageKey = req.body.photo;
+        } else {
+            const uploadImg = await uploadFile(req.file);
+            image = uploadImg;
+            imageKey = image.key;
+            console.log("S3 response:", uploadImg);
+            await unlinkFile(req.file.path);
+        }
+        const values = [req.body.username, req.body.email, imageKey, req.body.datejoined];
         const result = await updateReader(req.params._id, values);
         res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.status(500).json({Error: err.message});
+        res.status(500).json({ Error: err.message });
     }
 });
 
@@ -145,13 +157,13 @@ router.delete('/readers/:_id', async (req, res) => {
     try {
         const result = await deleteReader(req.params._id);
         if (result.affectedRows == 0) {
-            res.status(404).json({Error: "User not found"});
+            res.status(404).json({ Error: "User not found" });
         } else {
             res.status(204).json(result);
         }
     } catch (err) {
         console.log(err);
-        res.status(500).json({Error: err.message});
+        res.status(500).json({ Error: err.message });
     }
 });
 

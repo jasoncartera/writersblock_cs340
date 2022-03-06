@@ -9,7 +9,7 @@ How table is broken up into components is Adapted from:
     movies_ui.zip (particularly MovieList.js and Movie.js) from CS 290 F'21, Module 9, Exploration — Implementing a Full-Stack MERN App - Part 1
 Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
 */
-function CommentList({ comments, setComments }) {
+function CommentList({ comments, setComments, setCommentToEdit }) {
 
     const onDelete = async id => {
         
@@ -23,6 +23,10 @@ function CommentList({ comments, setComments }) {
         } else {
             console.error(`Failed to delete the comment with id ${id}, status code ${response.status}`);
         }
+    }
+
+    const onEdit = comment => {
+        setCommentToEdit(comment);
     }
 
     comments.sort((a, b) => a.Id > b.Id ? 1: -1);
@@ -43,7 +47,8 @@ function CommentList({ comments, setComments }) {
                 </thead>
                 <tbody>
                     {comments.map((comment, i) => <Comment comment={comment}
-                    onDelete={onDelete} 
+                    onDelete={onDelete}
+                    onEdit={onEdit} 
                     key={i} />)}
                 </tbody>
             </table>
