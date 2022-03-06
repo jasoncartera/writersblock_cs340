@@ -8,7 +8,7 @@ function Post({ post, onDelete, onEdit }) {
             <td>{post.Username}</td>
             <td>{post.Content}</td>
             <td>{post.Photo}</td>
-            <td>{post.Posted}</td>
+            <td>{post.Posted.split("T")[0]}</td>
             <td><MdEdit className='toggle' onClick={ () => onEdit(post)} /></td>
             <td><MdDeleteForever className='toggle' onClick={ () => onDelete(post.Id)} /></td>
         </tr>

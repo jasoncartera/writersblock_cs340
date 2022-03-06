@@ -41,9 +41,6 @@ function WritersReaders() {
                     <div className="insert">
                         <InsertWriterReader setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
                     </div>
-                    <div className="update">
-                        <UpdateWriterReader setWritersReaders={setWritersReaders} writers={writers} readers={readers}/>
-                    </div>
                 </div>
                 
             </div>
