@@ -140,7 +140,6 @@ router.post('/writers', upload.single('writerPhoto'), async (req, res) => {
 router.put('/writers/:_id', upload.single('updateWriterPhoto'), async (req, res) => {
     try {
         let image = req.file;
-        console.log(image)
         let imageKey = null
         if (image === undefined){
             console.log("no image")

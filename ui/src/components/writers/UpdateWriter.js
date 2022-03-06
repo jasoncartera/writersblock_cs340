@@ -56,6 +56,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
+            setPhoto('');
             imgRef.current.value = null;
         }
 

@@ -69,7 +69,7 @@ const selectAllPosts = async () => {
 /* Update a post
 NOTE: NEED TO SEND ALL VALUES TO SERVER FROM UI EVEN IF ONLY UPDATING ONE */
 const updatePost = async (_id, values) => {
-    const updatePostQuery = `UPDATE Posts SET WriterId=?, Content=?, Photo=?, Posted=? WHERE Id=` +db.escape(_id);
+    const updatePostQuery = `UPDATE Posts SET WriterId=(SELECT Id FROM Writers WHERE Username=?), Content=?, Photo=?, Posted=? WHERE Id=` +db.escape(_id);
     const result = await dbQuery(updatePostQuery, values);
     return result;
 };
@@ -138,9 +138,21 @@ router.post('/posts', upload.single('postPhoto'), async (req, res) => {
 });
 
 /* Update post by id */
-router.put('/posts/:_id', async (req, res) => {
+router.put('/posts/:_id', upload.single('updatePostPhoto'), async (req, res) => {
     try {
-        const values = [req.body.writerId, req.body.content, req.body.photo, req.body.posted];
+        let image = req.file;
+        let imageKey = null;
+        if (image === undefined) {
+            console.log("no image")
+            imageKey = req.body.photo;
+        } else {
+            const uploadImg = await uploadFile(req.file);
+            image = uploadImg;
+            imageKey = image.key;
+            console.log("S3 response:", uploadImg);
+            await unlinkFile(req.file.path);
+        } 
+        const values = [req.body.username, req.body.content, imageKey, req.body.posted];
         const result = await updatePost(req.params._id, values);
         console.log(result);
         res.status(200).json(result);

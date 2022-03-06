@@ -10,7 +10,7 @@ How table is broken up into components is Adapted from:
     movies_ui.zip (particularly MovieList.js and Movie.js) from CS 290 F'21, Module 9, Exploration — Implementing a Full-Stack MERN App - Part 1
 Source URL: https://canvas.oregonstate.edu/courses/1830200/pages/exploration-implementing-a-full-stack-mern-app-part-1?module_item_id=21362841
 */
-function PostList({ posts }) {
+function PostList({ posts , setPostToEdit }) {
 
     const context = useOutletContext();
     let setPosts = context.post[1]
@@ -27,6 +27,10 @@ function PostList({ posts }) {
         } else {
             console.error(`Failed to delete the post with id ${id}, status code ${response.status}`);
         }
+    }
+
+    const onEdit= post => {
+        setPostToEdit(post);
     }
     
     posts.sort((a, b) => (a.Id > b.Id ? 1: -1));
@@ -49,6 +53,7 @@ function PostList({ posts }) {
                 <tbody>
                     {posts.map((post, i) => <Post post={post}
                     onDelete={onDelete}
+                    onEdit={onEdit}
                     key={i} />)}
                 </tbody>
             </table>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 
 /* 
@@ -8,39 +8,124 @@ Adapted from: Populate Drop Down Options in React
 Source URL: https://dev.to/antdp425/populate-dropdown-options-in-react-1nk0
 */
 
-function UpdatePost({ setPosts, writers }) {
+function UpdatePost({ setPosts, writers, postToEdit }) {
 
-    
+    const [id, setId] = useState('');
+    const [postWriter, setPostWriter] = useState('');
+    const [content, setContent] = useState('');
+    const [posted, setPosted] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [file, setFile] = useState(null);
+    const imgRef = useRef(null);
+
+    useEffect(() => {
+        setId(postToEdit.Id);
+        setPostWriter(postToEdit.Username);
+        setContent(postToEdit.Content);
+        setPosted(postToEdit.Posted ? postToEdit.Posted.split("T")[0] : '');
+        setPhoto(postToEdit.Photo);
+    }, [postToEdit]);
+
+    const fileSelected = event => {
+        const file = event.target.files[0];
+        setFile(file);
+    }
+
+    const updatePost = async (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+        formData.append("username", postWriter);
+        formData.append("content", content);
+        formData.append("posted", posted);
+        if (file) {
+            formData.append("updatePostPhoto", file);
+        } else {
+            formData.append("photo", photo ? photo : '');
+        }
+
+        const response = await fetch(`http://localhost:3000/posts/${id}`, {
+            method: 'PUT',
+            mode: 'cors',
+            body: formData
+        });
+
+        // successful insert
+        if (response.status === 200) {
+
+            // re-render table
+            const response = await fetch('https://writers-block-serve.herokuapp.com/posts');
+            const posts = await response.json();
+            setPosts(posts);
+
+            // clear input values
+            setId('')
+            setPostWriter('');
+            setContent('');
+            setPosted('');
+            setPhoto('')
+            imgRef.current.value = null;
+        }
+
+    };
+
     return (
         <div className="update-form" id="update-post-form">
-            <div className='formContents'>
-                <p>Update Post</p>
-                <div className='input-group'>
-                    <label htmlFor="post-id">Id:</label>
-                    <input type="number" name="post-id" id="post-update-id"></input>
+            <form onSubmit={updatePost} encType="multipart/form-data">
+                <div className='formContents'>
+                    <p>Update Post</p>
+                    <div className='input-group'>
+                        <label htmlFor="postId">Id:</label>
+                        <input type="number" 
+                        name="postId" 
+                        id="post-update-id"
+                        value={id}
+                        onChange={ e => {setId(e.target.value)}}></input>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="postWriterId">Writer:</label>
+                        <select type="number" 
+                        name="postWriterId" 
+                        id="post-update-writerid" 
+                        defaultValue={''}
+                        value={postWriter}
+                        onChange={e => setPostWriter(e.target.value)}>
+                        <option value=''>Select a Writer</option>
+                            {writers.map((writer, i) => <option 
+                                key={i} 
+                                value={writer.Username}>{writer.Username}</option>)}
+                        </select>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="updatePostPhoto">Update Photo:</label>
+                        <input type="file" 
+                        name="updatePostPhoto" 
+                        id="post-update-photo"
+                        ref={imgRef}
+                        onChange={fileSelected}>
+                        </input>
+                    </div>
+
+                    <div className='input-group'>
+                        <label htmlFor="postUpdateDate">Post Date:</label>
+                        <input type="date" 
+                        name="postUpdateDate" 
+                        id="post-update-date"
+                        value={posted}
+                        onChange={e => {setPosted(e.target.value)}}></input>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="post-content">Content:</label>
+                        <textarea 
+                        name="postUpdateContent" 
+                        id="postUpdateContent"
+                        value={content}
+                        onChange={e => {setContent(e.target.value)}} 
+                        rows="4" 
+                        cols="30"></textarea>
+                    </div>
+                    <button type="submit" className="update-button">UPDATE</button>
                 </div>
-                <div className='input-group'>
-                    <label htmlFor="post-writerid">Writer:</label>
-                    <select type="number" name="post-writerid" id="post-update-writerid" defaultValue={''}>
-                        <option value="">Select a Writer</option>
-                        {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
-                    </select>
-                </div>
-                <div className='input-group'>
-                    <label htmlFor="post-photo">Update Photo:</label>
-                    <input type="file" name="post-photo" id="post-update-photo"></input>
-                </div>
-                     
-                <div className='input-group'>
-                    <label htmlFor="post-update-date">Post Date:</label>
-                    <input type="date" name="post-date" id="post-update-date"></input>
-                </div>       
-                <div className='input-group'>
-                    <label htmlFor="post-content">Content:</label>
-                    <textarea name="post-update-content" id="post-update-content" rows="4" cols="30"></textarea>
-                </div>
-                <button type="submit" className="update-button">UPDATE</button>
-            </div>
+            </form>
         </div>
     );
 }
