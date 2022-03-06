@@ -8,7 +8,7 @@ function Comment({ comment, onDelete, onEdit }) {
             <td>{comment.Username}</td>
             <td>{comment.PostId}</td>
             <td>{comment.Content}</td>
-            <td>{comment.Posted}</td>
+            <td>{comment.Posted.split("T")[0]}</td>
             <td><MdEdit className='toggle' onClick={ () => onEdit(comment)} /></td>
             <td><MdDeleteForever className='toggle' onClick={ () => onDelete(comment.Id)} /></td>
         </tr>

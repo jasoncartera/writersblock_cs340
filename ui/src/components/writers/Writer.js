@@ -8,7 +8,7 @@ function Writer({ writer, onDelete, onEdit }) {
             <td>{writer.Username}</td>
             <td>{writer.Email}</td>
             <td>{writer.Photo}</td>
-            <td>{writer.DateJoined}</td>
+            <td>{writer.DateJoined.split("T")[0]}</td>
             <td><MdEdit className='toggle' onClick={ () => onEdit( writer )}/></td>
             <td><MdDeleteForever className='toggle' onClick={ () => onDelete(writer.Id)} /></td>
         </tr>
