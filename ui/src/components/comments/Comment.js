@@ -1,7 +1,7 @@
 import React from 'react';
 import {MdDeleteForever, MdEdit} from 'react-icons/md'
 
-function Comment({ comment, onDelete }) {
+function Comment({ comment, onDelete, onEdit }) {
     return (
         <tr className="list-row">
             <td>{comment.Id}</td>
@@ -9,7 +9,7 @@ function Comment({ comment, onDelete }) {
             <td>{comment.PostId}</td>
             <td>{comment.Content}</td>
             <td>{comment.Posted}</td>
-            <td><MdEdit className='toggle' /></td>
+            <td><MdEdit className='toggle' onClick={ () => onEdit(comment)} /></td>
             <td><MdDeleteForever className='toggle' onClick={ () => onDelete(comment.Id)} /></td>
         </tr>
     );

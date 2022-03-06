@@ -10,8 +10,10 @@ function Comments() {
 
     const context = useOutletContext();
     let readers = context.read[0];
-
     let [comments, setComments] = useState([]);
+
+    const [commentToEdit, setCommentToEdit] = useState({});
+
     const getComments = async () => {
         const response = await fetch(' https://writers-block-serve.herokuapp.com/comments');
         const comments = await response.json();
@@ -30,7 +32,7 @@ function Comments() {
 
             <div className="page-body">
                 <div className="list">
-                    <CommentList comments={comments} setComments={setComments} />
+                    <CommentList comments={comments} setComments={setComments} setCommentToEdit={setCommentToEdit} />
                 </div>
                 <div className='dbms-components'>
                 <div className="search">
@@ -40,7 +42,7 @@ function Comments() {
                         <InsertComment setComments={setComments} readers={readers}/>
                     </div>
                     <div className="update">
-                        <UpdateComment setComments={setComments} readers={readers} />
+                        <UpdateComment setComments={setComments} readers={readers} commentToEdit={commentToEdit}/>
                     </div>
                 </div>
             </div>

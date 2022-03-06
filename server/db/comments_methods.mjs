@@ -73,7 +73,7 @@ const selectAllComments = async () => {
 /* Update a comment
 NOTE: NEED TO SEND ALL VALUES TO SERVER FROM UI EVEN IF ONLY UPDATING ONE */
 const updateComment = async (_id, values) => {
-    const updateCommentQuery = `UPDATE Comments SET ReaderId=?, PostId=?, Content=?, Posted=? WHERE Id=` +db.escape(_id);
+    const updateCommentQuery = `UPDATE Comments SET ReaderId= (SELECT Id FROM Readers WHERE Username=?), PostId=?, Content=?, Posted=? WHERE Id=` +db.escape(_id);
     const result = await dbQuery(updateCommentQuery, values);
     return result;
 };
@@ -147,7 +147,7 @@ router.post('/comments', async (req, res) => {
 /* Update post by id */
 router.put('/comments/:_id', async (req, res) => {
     try {
-        const values = [req.body.readerId, req.body.postId, req.body.content, req.body.posted];
+        const values = [req.body.commentReader, req.body.postId, req.body.content, req.body.posted];
         const result = await updateComment(req.params._id, values);
         res.status(200).json(result);
     } catch (err) {
