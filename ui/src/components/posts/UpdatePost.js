@@ -43,7 +43,7 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
             formData.append("photo", photo ? photo : '');
         }
 
-        const response = await fetch(`http://localhost:3000/posts/${id}`, {
+        const response = await fetch(`https://writers-block-serve.herokuapp.com/posts/${id}`, {
             method: 'PUT',
             mode: 'cors',
             body: formData
