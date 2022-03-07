@@ -35,7 +35,6 @@ function WriterReaderList({ writersReaders, setWritersReaders }) {
                         <th>Id</th>
                         <th>Writer Username</th>
                         <th>Reader Username</th>
-                        <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>

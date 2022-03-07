@@ -7,7 +7,6 @@ function WriterReader({ writerReader, onDelete }) {
             <td>{writerReader.Id}</td>
             <td>{writerReader.Writer}</td>
             <td>{writerReader.Reader}</td>
-            <td><MdEdit className='toggle' /></td>
             <td><MdDeleteForever className='toggle' onClick={ () => onDelete(writerReader.Id)}/></td>
         </tr>
     );
