@@ -71,7 +71,8 @@ function UpdateReader({ setReaders, readerToEdit }) {
                         name="readerId" 
                         id="reader-update-id"
                         value={id}
-                        onChange={e => {setId(e.target.value)}}>
+                        onChange={e => {setId(e.target.value)}}
+                        disabled>
                         </input>
                     </div>
 
@@ -81,7 +82,8 @@ function UpdateReader({ setReaders, readerToEdit }) {
                         name="readerUsername" 
                         id="reader-update-username"
                         value={username}
-                        onChange={e => {setUsername(e.target.value)}}>
+                        onChange={e => {setUsername(e.target.value)}}
+                        required>
                         </input>
                     </div>
 
@@ -91,7 +93,8 @@ function UpdateReader({ setReaders, readerToEdit }) {
                         name="readerEmail" 
                         id="reader-update-email"
                         value={email}
-                        onChange={e => {setEmail(e.target.value)}}>
+                        onChange={e => {setEmail(e.target.value)}}
+                        required>
                         </input>
                     </div>
                     <div className='input-group'>
@@ -110,7 +113,8 @@ function UpdateReader({ setReaders, readerToEdit }) {
                         name="readerDateJoined" 
                         id="reader-update-date-joined"
                         value={datejoined}
-                        onChange={e => {setDateJoined(e.target.value)}}>
+                        onChange={e => {setDateJoined(e.target.value)}}
+                        required>
                         </input>
                     </div>
                     <button type="submit" className="update-button">UPDATE</button>

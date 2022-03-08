@@ -67,7 +67,8 @@ function InsertPost({ setPosts, writers }) {
                             name="post-writerid"
                             id="post-writerid"
                             value={writerId}
-                            onChange={e => setWriterId(e.target.value)}>
+                            onChange={e => setWriterId(e.target.value)}
+                            required>
                             <option value="">Select a Writer</option>
                             {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                         </select>
@@ -90,7 +91,8 @@ function InsertPost({ setPosts, writers }) {
                             name="post-date"
                             id="post-date"
                             value={posted}
-                            onChange={e => setPosted(e.target.value)}>
+                            onChange={e => setPosted(e.target.value)}
+                            required>
                         </input>
                     </div>
 
@@ -101,7 +103,8 @@ function InsertPost({ setPosts, writers }) {
                             rows="4"
                             cols="30"
                             value={content}
-                            onChange={e => setContent(e.target.value)}>
+                            onChange={e => setContent(e.target.value)}
+                            required>
                         </textarea>
                     </div>
                     <button type="submit" onClick={insertPost}>SUBMIT</button>

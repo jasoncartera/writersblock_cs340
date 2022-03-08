@@ -63,7 +63,8 @@ function InsertReader({ setReaders }) {
                             name="reader-username"
                             id="reader-username"
                             value={username}
-                            onChange={e => setUsername(e.target.value)}>
+                            onChange={e => setUsername(e.target.value)}
+                            required>
                         </input>
                     </div>
 
@@ -73,7 +74,8 @@ function InsertReader({ setReaders }) {
                             name="reader-email"
                             id="reader-email"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}>
+                            onChange={e => setEmail(e.target.value)}
+                            required>
                         </input>
                     </div>
 
@@ -94,7 +96,8 @@ function InsertReader({ setReaders }) {
                             name="reader-date-joined"
                             id="reader-date-joined"
                             value={datejoined}
-                            onChange={e => setDateJoined(e.target.value)}>
+                            onChange={e => setDateJoined(e.target.value)}
+                            required>
                         </input>
                     </div>
 

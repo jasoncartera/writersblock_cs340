@@ -73,7 +73,8 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                             name="writerId"
                             id="writer-id"
                             value={id}
-                            onChange={e => {setId(e.target.value)}}>
+                            onChange={e => {setId(e.target.value)}}
+                            disabled>
                         </input>
                     </div>
                     <div className='input-group'>
@@ -82,7 +83,8 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                             name="updateWriterUsername"
                             id="writer-update-username"
                             value={username}
-                            onChange={(e) => { setUsername(e.target.value) }}>
+                            onChange={(e) => { setUsername(e.target.value) }}
+                            required>
                         </input>
                     </div>
                     <div className='input-group'>
@@ -91,7 +93,8 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                             name="updateWriterEmail"
                             id="writer-update-email"
                             value={email}
-                            onChange={(e) => {setEmail(e.target.value)}}>
+                            onChange={(e) => {setEmail(e.target.value)}}
+                            required>
                         </input>
                     </div>
                     <div className='input-group'>
@@ -110,7 +113,8 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                             name="writerDateJoined"
                             id="writer-update-date-joined"
                             value={datejoined}
-                            onChange={(e) => {setDateJoined(e.target.value)}}>
+                            onChange={(e) => {setDateJoined(e.target.value)}}
+                            required>
                         </input>
                     </div>
                     <button type="submit" className="update-button">UPDATE</button>
