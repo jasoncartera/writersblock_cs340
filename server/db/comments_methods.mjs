@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.use(express.json());
 
-
 /*
     Citation for the following middleware:
     Date: 2/27/2022
