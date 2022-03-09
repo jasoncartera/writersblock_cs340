@@ -68,16 +68,18 @@ function InsertWriter({ setWriters }) {
                             name="writerUsername"
                             id="writer-username"
                             value={username}
-                            onChange={e => setUsername(e.target.value)}>
+                            onChange={e => setUsername(e.target.value)}
+                            required>
                         </input>
                     </div>
                     <div className='input-group'>
                         <label htmlFor="writerEmail">Email:</label>
-                        <input type="text"
+                        <input type="email"
                             name="writerEmail"
                             id="writer-email"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}>
+                            onChange={e => setEmail(e.target.value)}
+                            required>
                         </input>
                     </div>
                     <div className='input-group'>
@@ -96,7 +98,8 @@ function InsertWriter({ setWriters }) {
                             name="writerDateJoined"
                             id="writer-date-joined"
                             value={datejoined}
-                            onChange={e => setDateJoined(e.target.value)}>
+                            onChange={e => setDateJoined(e.target.value)}
+                            required>
                         </input>
                     </div>
                     <button type="submit">SUBMIT</button>

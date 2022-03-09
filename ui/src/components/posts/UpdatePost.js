@@ -79,7 +79,8 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
                         name="postId" 
                         id="post-update-id"
                         value={id}
-                        onChange={ e => {setId(e.target.value)}}></input>
+                        onChange={ e => {setId(e.target.value)}}
+                        disabled></input>
                     </div>
                     <div className='input-group'>
                         <label htmlFor="postWriterId">Writer:</label>
@@ -88,6 +89,7 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
                         id="post-update-writerid" 
                         defaultValue={''}
                         value={postWriter}
+                        required
                         onChange={e => setPostWriter(e.target.value)}>
                         <option value=''>Select a Writer</option>
                             {writers.map((writer, i) => <option 
@@ -111,7 +113,8 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
                         name="postUpdateDate" 
                         id="post-update-date"
                         value={posted}
-                        onChange={e => {setPosted(e.target.value)}}></input>
+                        onChange={e => {setPosted(e.target.value)}}
+                        required></input>
                     </div>
                     <div className='input-group'>
                         <label htmlFor="post-content">Content:</label>

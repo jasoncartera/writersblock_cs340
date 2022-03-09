@@ -59,6 +59,7 @@ function UpdateComment({ setComments, readers, commentToEdit }) {
                     name="comment-id" 
                     id="comment-update-id"
                     value={id}
+                    disabled
                     onChange={e => {setId(e.target.value)}}></input>
                 </div>
                 <div className='input-group'>
@@ -68,6 +69,7 @@ function UpdateComment({ setComments, readers, commentToEdit }) {
                     id="comment-update-readerid" 
                     defaultValue={''}
                     value={commentReader}
+                    required
                     onChange={e => setCommentReader(e.target.value)}>
                         <option value="">Select a Reader</option>
                         {readers.map((reader, i) => <option key={i} value={reader.Username}>{reader.Username}</option>)}
@@ -80,6 +82,7 @@ function UpdateComment({ setComments, readers, commentToEdit }) {
                     id="comment-update-postid" 
                     defaultValue={''}
                     value={postId}
+                    required
                     onChange={e => setPostId(e.target.value)}>
                         <option value="">Select a PostId</option>
                         {posts.map((post, i) => <option key={i} value={post.Id}>{post.Id}</option>)}
@@ -91,6 +94,7 @@ function UpdateComment({ setComments, readers, commentToEdit }) {
                     name="comment-date" 
                     id="comment-update-date"
                     value={posted}
+                    required
                     onChange={e => {setPosted(e.target.value)}}></input>
                 </div>
                 <div className='input-group'>
@@ -98,6 +102,7 @@ function UpdateComment({ setComments, readers, commentToEdit }) {
                     <textarea name="comment-content" 
                     id="comment-update-content"
                     value={content}
+                    required
                     onChange={e => setContent(e.target.value)} 
                     rows="4" 
                     cols="30"></textarea>

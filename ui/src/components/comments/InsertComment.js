@@ -62,7 +62,8 @@ function InsertComment({ setComments, readers }) {
                             name="comment-readerid" 
                             id="comment-readerid" 
                             value={readerId}
-                            onChange={e => setReaderId(e.target.value)}>
+                            onChange={e => setReaderId(e.target.value)}
+                            required>
                         <option value="">Select a Reader</option>
                         {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
                     </select>
@@ -73,7 +74,8 @@ function InsertComment({ setComments, readers }) {
                             name="comment-postid" 
                             id="comment-postid" 
                             value={postId}
-                            onChange={e => setPostId(e.target.value)}>
+                            onChange={e => setPostId(e.target.value)}
+                            required>
                         <option value="">Select a PostId</option>
                         {posts.map((post, i) => <option key={i} value={post.Id}>{post.Id}</option>)}
                     </select>
@@ -82,8 +84,10 @@ function InsertComment({ setComments, readers }) {
                     <label htmlFor="comment-date">Comment Date:</label>
                     <input  type="date" 
                             name="comment-date" 
-                            id="comment-date"value={posted}
-                            onChange={e => setPosted(e.target.value)}>
+                            id="comment-date"
+                            value={posted}
+                            onChange={e => setPosted(e.target.value)}
+                            required>
                     </input>
                 </div>
                 <div className='input-group'>
@@ -93,7 +97,8 @@ function InsertComment({ setComments, readers }) {
                                 rows="4" 
                                 cols="30"
                                 value={content}
-                                onChange={e => setContent(e.target.value)}>
+                                onChange={e => setContent(e.target.value)}
+                                required>
                     </textarea>
                 </div>
                 <button type="submit" onClick={insertComment}>SUBMIT</button>
