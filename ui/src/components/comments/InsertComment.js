@@ -21,10 +21,11 @@ function InsertComment({ setComments, readers }) {
     const [readerId, setReaderId] = useState('');
     const [postId, setPostId] = useState('');
     const [posted, setPosted] = useState('');
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState("");
 
     // api calls
-    const insertComment = async () => {
+    const insertComment = async (event) => {
+        event.preventDefault();
         const newComment = { readerId, postId, content, posted };
         const response = await fetch('https://writers-block-serve.herokuapp.com/comments', {
             method: 'POST',
@@ -36,7 +37,7 @@ function InsertComment({ setComments, readers }) {
         });
 
         // successful insert
-        if(response.status === 200){
+        if (response.status === 200) {
 
             // re-render table
             const response = await fetch(' https://writers-block-serve.herokuapp.com/comments');
@@ -47,62 +48,64 @@ function InsertComment({ setComments, readers }) {
             setReaderId('');
             setPostId('');
             setPosted('');
-            setContent('');
+            setContent("");
 
         }
     };
 
     return (
         <div className="insert-form" id="add-comment-form">
-            <div className='formContents'>
-                <p>Insert New Comment</p>
-                <div className='input-group'>
-                    <label htmlFor="comment-readerid">Reader:</label>
-                    <select type="number" 
-                            name="comment-readerid" 
-                            id="comment-readerid" 
+            <form onSubmit={insertComment}>
+                <div className='formContents'>
+                    <p>Insert New Comment</p>
+                    <div className='input-group'>
+                        <label htmlFor="comment-readerid">Reader:</label>
+                        <select type="number"
+                            name="comment-readerid"
+                            id="comment-readerid"
                             value={readerId}
                             onChange={e => setReaderId(e.target.value)}
                             required>
-                        <option value="">Select a Reader</option>
-                        {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
-                    </select>
-                </div>
-                <div className='input-group'>
-                    <label htmlFor="comment-postid">PostId:</label>
-                    <select type="number" 
-                            name="comment-postid" 
-                            id="comment-postid" 
+                            <option value="">Select a Reader</option>
+                            {readers.map((reader, i) => <option key={i} value={reader.Id}>{reader.Username}</option>)}
+                        </select>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="comment-postid">PostId:</label>
+                        <select type="number"
+                            name="comment-postid"
+                            id="comment-postid"
                             value={postId}
                             onChange={e => setPostId(e.target.value)}
                             required>
-                        <option value="">Select a PostId</option>
-                        {posts.map((post, i) => <option key={i} value={post.Id}>{post.Id}</option>)}
-                    </select>
-                </div>
-                <div className='input-group'>
-                    <label htmlFor="comment-date">Comment Date:</label>
-                    <input  type="date" 
-                            name="comment-date" 
+                            <option value="">Select a PostId</option>
+                            {posts.map((post, i) => <option key={i} value={post.Id}>{post.Id}</option>)}
+                        </select>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="comment-date">Comment Date:</label>
+                        <input type="date"
+                            name="comment-date"
                             id="comment-date"
                             value={posted}
                             onChange={e => setPosted(e.target.value)}
                             required>
-                    </input>
+                        </input>
+                    </div>
+                    <div className='input-group'>
+                        <label htmlFor="comment-content">Content:</label>
+                        <textarea name="comment-content"
+                            id="comment-content"
+                            rows="4"
+                            cols="30"
+                            value={content}
+                            onChange={e => setContent(e.target.value)}
+                            required>
+                        </textarea>
+                    </div>
+                    <button type="submit">SUBMIT</button>
                 </div>
-                <div className='input-group'>
-                    <label htmlFor="comment-content">Content:</label>
-                    <textarea   name="comment-content" 
-                                id="comment-content" 
-                                rows="4" 
-                                cols="30"
-                                value={content}
-                                onChange={e => setContent(e.target.value)}
-                                required>
-                    </textarea>
-                </div>
-                <button type="submit" onClick={insertComment}>SUBMIT</button>
-            </div>
+            </form>
         </div>
     );
 }

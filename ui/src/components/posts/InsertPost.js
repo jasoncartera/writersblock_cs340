@@ -69,7 +69,7 @@ function InsertPost({ setPosts, writers }) {
                             id="post-writerid"
                             value={writerId}
                             onChange={e => setWriterId(e.target.value)}>
-                            <option>Select a Writer</option>
+                            <option value="">Select a Writer</option>
                             {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                         </select>
                     </div>
@@ -107,7 +107,7 @@ function InsertPost({ setPosts, writers }) {
                             required>
                         </textarea>
                     </div>
-                    <button type="submit" onClick={insertPost}>SUBMIT</button>
+                    <button type="submit">SUBMIT</button>
                 </div>
             </form>
         </div>
