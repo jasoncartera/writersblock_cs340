@@ -70,7 +70,7 @@ function InsertReader({ setReaders }) {
 
                     <div className='input-group'>
                         <label htmlFor="reader-email">Email:</label>
-                        <input type="text"
+                        <input type="email"
                             name="reader-email"
                             id="reader-email"
                             value={email}

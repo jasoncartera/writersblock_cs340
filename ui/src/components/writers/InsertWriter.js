@@ -74,7 +74,7 @@ function InsertWriter({ setWriters }) {
                     </div>
                     <div className='input-group'>
                         <label htmlFor="writerEmail">Email:</label>
-                        <input type="text"
+                        <input type="email"
                             name="writerEmail"
                             id="writer-email"
                             value={email}

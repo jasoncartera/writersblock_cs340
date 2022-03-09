@@ -64,12 +64,12 @@ function InsertPost({ setPosts, writers }) {
                     <div className='input-group'>
                         <label htmlFor="post-writerid">Writer:</label>
                         <select type="number"
+                            required
                             name="post-writerid"
                             id="post-writerid"
                             value={writerId}
-                            onChange={e => setWriterId(e.target.value)}
-                            required>
-                            <option value="">Select a Writer</option>
+                            onChange={e => setWriterId(e.target.value)}>
+                            <option>Select a Writer</option>
                             {writers.map((writer, i) => <option key={i} value={writer.Id}>{writer.Username}</option>)}
                         </select>
                     </div>
@@ -88,11 +88,11 @@ function InsertPost({ setPosts, writers }) {
                     <div className='input-group'>
                         <label htmlFor="post-date">Post Date:</label>
                         <input type="date"
+                            required
                             name="post-date"
                             id="post-date"
                             value={posted}
-                            onChange={e => setPosted(e.target.value)}
-                            required>
+                            onChange={e => setPosted(e.target.value)}>
                         </input>
                     </div>
 

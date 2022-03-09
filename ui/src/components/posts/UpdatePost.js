@@ -123,7 +123,6 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
                         id="postUpdateContent"
                         value={content}
                         onChange={e => {setContent(e.target.value)}} 
-                        required
                         rows="4" 
                         cols="30"></textarea>
                     </div>

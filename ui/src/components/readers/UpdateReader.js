@@ -89,7 +89,7 @@ function UpdateReader({ setReaders, readerToEdit }) {
 
                     <div className='input-group'>
                         <label htmlFor="readerEmail">Email:</label>
-                        <input type="text" 
+                        <input type="email" 
                         name="readerEmail" 
                         id="reader-update-email"
                         value={email}

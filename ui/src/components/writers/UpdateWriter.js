@@ -89,7 +89,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
                     </div>
                     <div className='input-group'>
                         <label htmlFor="updateWriterEmail">Email:</label>
-                        <input type="text"
+                        <input type="email"
                             name="updateWriterEmail"
                             id="writer-update-email"
                             value={email}
