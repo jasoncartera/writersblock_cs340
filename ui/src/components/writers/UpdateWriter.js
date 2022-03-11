@@ -23,7 +23,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
         const file = event.target.files[0];
         setFile(file);
     }
-
+    
     // Api call
     const updateWriter = async (event) => {
         event.preventDefault();
@@ -67,14 +67,14 @@ function UpdateWriter({ setWriters, writerToEdit }) {
             <form onSubmit={updateWriter} encType="multipart/form-data">
                 <div className='formContents'>
                     <p>Update Writer</p>
+                    <p className="updateText">Click an update button in a table row to populate the form.</p>
                     <div className='input-group'>
                         <label htmlFor="writerId">Id:</label>
                         <input type="number"
                             name="writerId"
                             id="writer-id"
                             value={id}
-                            onChange={e => {setId(e.target.value)}}
-                            disabled>
+                            onChange={e => {setId(e.target.value)}}>
                         </input>
                     </div>
                     <div className='input-group'>

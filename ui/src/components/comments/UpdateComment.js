@@ -55,13 +55,13 @@ function UpdateComment({ setComments, readers, commentToEdit }) {
             <form onSubmit={updateComment}>
                 <div className='formContents'>
                     <p>Update Comment</p>
+                    <p className="updateText">Click an update button in a table row to populate the form.</p>
                     <div className='input-group'>
                         <label htmlFor="comment-id">Id:</label>
                         <input type="number"
                             name="comment-id"
                             id="comment-update-id"
                             value={id}
-                            disabled
                             onChange={e => { setId(e.target.value) }}></input>
                     </div>
                     <div className='input-group'>
