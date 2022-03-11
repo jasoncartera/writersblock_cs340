@@ -40,6 +40,7 @@ function Home(){
             <div className="title">
                 <h1>WritersBlock Management Site</h1>
             </div>
+            
 
             <Outlet context={{write: [writers, setWriters], read: [readers, setReaders], post: [posts, setPosts]}} />
         </>

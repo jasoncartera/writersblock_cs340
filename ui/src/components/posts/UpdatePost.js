@@ -73,58 +73,59 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
             <form onSubmit={updatePost} encType="multipart/form-data">
                 <div className='formContents'>
                     <p>Update Post</p>
+                    <p className="updateText">Click an update button in a table row to populate the form.</p>
                     <div className='input-group'>
                         <label htmlFor="postId">Id:</label>
-                        <input type="number" 
-                        name="postId" 
-                        id="post-update-id"
-                        value={id}
-                        onChange={ e => {setId(e.target.value)}}
-                        disabled></input>
+                        <input type="number"
+                            name="postId"
+                            id="post-update-id"
+                            value={id}
+                            onChange={e => { setId(e.target.value) }}
+                        ></input>
                     </div>
                     <div className='input-group'>
                         <label htmlFor="postWriterId">Writer:</label>
-                        <select type="number" 
-                        name="postWriterId" 
-                        id="post-update-writerid" 
-                        defaultValue={''}
-                        value={postWriter}
-                        required
-                        onChange={e => setPostWriter(e.target.value)}>
-                        <option value=''>Select a Writer</option>
-                            {writers.map((writer, i) => <option 
-                                key={i} 
+                        <select type="number"
+                            name="postWriterId"
+                            id="post-update-writerid"
+                            defaultValue={''}
+                            value={postWriter}
+                            required
+                            onChange={e => setPostWriter(e.target.value)}>
+                            <option value=''>Select a Writer</option>
+                            {writers.map((writer, i) => <option
+                                key={i}
                                 value={writer.Username}>{writer.Username}</option>)}
                         </select>
                     </div>
                     <div className='input-group'>
                         <label htmlFor="updatePostPhoto">Update Photo:</label>
-                        <input type="file" 
-                        name="updatePostPhoto" 
-                        id="post-update-photo"
-                        ref={imgRef}
-                        onChange={fileSelected}>
+                        <input type="file"
+                            name="updatePostPhoto"
+                            id="post-update-photo"
+                            ref={imgRef}
+                            onChange={fileSelected}>
                         </input>
                     </div>
 
                     <div className='input-group'>
                         <label htmlFor="postUpdateDate">Post Date:</label>
-                        <input type="date" 
-                        name="postUpdateDate" 
-                        id="post-update-date"
-                        value={posted}
-                        onChange={e => {setPosted(e.target.value)}}
-                        required></input>
+                        <input type="date"
+                            name="postUpdateDate"
+                            id="post-update-date"
+                            value={posted}
+                            onChange={e => { setPosted(e.target.value) }}
+                            required></input>
                     </div>
                     <div className='input-group'>
                         <label htmlFor="post-content">Content:</label>
-                        <textarea 
-                        name="postUpdateContent" 
-                        id="postUpdateContent"
-                        value={content}
-                        onChange={e => {setContent(e.target.value)}} 
-                        rows="4" 
-                        cols="30"></textarea>
+                        <textarea
+                            name="postUpdateContent"
+                            id="postUpdateContent"
+                            value={content}
+                            onChange={e => { setContent(e.target.value) }}
+                            rows="4"
+                            cols="30"></textarea>
                     </div>
                     <button type="submit" className="update-button">UPDATE</button>
                 </div>

@@ -154,7 +154,13 @@ tr:hover td {
     width: 70%;
 }
 
+.updateText {
+    font-size: 1em;
+}
 
+.textContent {
+    font-size: 1em;
+}
 select, .insert-form input[type=file], .search-form input[type=file] {
     padding: 0.5em;
     appearance: none;

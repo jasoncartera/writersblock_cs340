@@ -9,8 +9,8 @@ function Reader({ reader, onDelete, onEdit }) {
             <td>{reader.Email}</td>
             <td>{reader.Photo}</td>
             <td>{reader.DateJoined.split("T")[0]}</td>
-            <td><MdEdit className='toggle' onClick={ () => onEdit( reader )} /></td>
-            <td><MdDeleteForever className='toggle' onClick={ () => onDelete(reader.Id)} /></td>
+            <td><MdEdit onClick={ () => onEdit( reader )} /></td>
+            <td><MdDeleteForever onClick={ () => onDelete(reader.Id)} /></td>
         </tr>
     );
 }

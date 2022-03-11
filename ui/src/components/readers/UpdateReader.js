@@ -65,14 +65,14 @@ function UpdateReader({ setReaders, readerToEdit }) {
             <form onSubmit={updateReader} encType="multipart/form-data">
                 <div className='formContents'>
                     <p>Update Reader</p>
+                    <p className="updateText">Click an update button in a table row to populate the form.</p>
                     <div className='input-group'>
                         <label htmlFor="readerId">Id:</label>
                         <input type="number" 
                         name="readerId" 
                         id="reader-update-id"
                         value={id}
-                        onChange={e => {setId(e.target.value)}}
-                        disabled>
+                        onChange={e => {setId(e.target.value)}}>
                         </input>
                     </div>
 
