@@ -52,6 +52,7 @@ function InsertPost({ setPosts, writers }) {
             setWriterId('');
             setPosted('');
             setContent('');
+            setFile();
             imgRef.current.value = null;
         }
     };

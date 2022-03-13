@@ -15,7 +15,7 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
     const [content, setContent] = useState('');
     const [posted, setPosted] = useState('');
     const [photo, setPhoto] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState();
     const imgRef = useRef(null);
 
     useEffect(() => {
@@ -62,7 +62,8 @@ function UpdatePost({ setPosts, writers, postToEdit }) {
             setPostWriter('');
             setContent('');
             setPosted('');
-            setPhoto('')
+            setPhoto('');
+            setFile();
             imgRef.current.value = null;
         }
 

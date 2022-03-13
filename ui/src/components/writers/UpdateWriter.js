@@ -8,7 +8,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
     const [email, setEmail] = useState('');
     const [datejoined, setDateJoined] = useState('');
     const [photo, setPhoto] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState();
     const imgRef = useRef(null);
 
     useEffect(() => {
@@ -57,6 +57,7 @@ function UpdateWriter({ setWriters, writerToEdit }) {
             setEmail('');
             setDateJoined('');
             setPhoto('');
+            setFile();
             imgRef.current.value = null;
         }
 

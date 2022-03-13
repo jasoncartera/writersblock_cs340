@@ -7,7 +7,7 @@ function UpdateReader({ setReaders, readerToEdit }) {
     const [email, setEmail] = useState('');
     const [datejoined, setDateJoined] = useState('');
     const [photo, setPhoto] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState();
     const imgRef = useRef(null);
 
     useEffect(() => {
@@ -55,6 +55,7 @@ function UpdateReader({ setReaders, readerToEdit }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
+            setFile();
             imgRef.current.value = null;
         }
 

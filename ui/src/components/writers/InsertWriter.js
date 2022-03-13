@@ -51,6 +51,7 @@ function InsertWriter({ setWriters }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
+            setFile();
             imgRef.current.value = null;
         }
 

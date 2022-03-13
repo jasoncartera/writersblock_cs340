@@ -11,7 +11,7 @@ function InsertReader({ setReaders }) {
     // input state
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState();
     const [datejoined, setDateJoined] = useState('');
     const imgRef = useRef(null);
 
@@ -47,6 +47,7 @@ function InsertReader({ setReaders }) {
             setUsername('');
             setEmail('');
             setDateJoined('');
+            setFile();
             imgRef.current.value = null;
         }
     };
